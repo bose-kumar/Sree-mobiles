@@ -1,0 +1,191 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="Sri_Mobiles.Admin.Admin" %>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <title>Sri Mobile | Admin Panel</title>
+
+    <!-- FAVICON (CORRECT PLACE) -->
+    <link rel="icon" type="image/png" href="../Images/Icon.png" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f8fafc;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            background: #1f2937;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-brand {
+            padding: 20px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            border-bottom: 1px solid #374151;
+        }
+
+        .sidebar-brand i {
+            color: #22c55e;
+        }
+
+        .sidebar-menu {
+            flex: 1;
+            padding-top: 15px;
+        }
+
+        .sidebar .btn {
+            width: 100%;
+            text-align: left;
+            color: #e5e7eb;
+            padding: 12px 20px;
+            font-weight: 500;
+            border: none;
+            background: transparent;
+            border-radius: 0;
+        }
+
+        .sidebar .btn i {
+            width: 20px;
+        }
+
+        /* HOVER */
+        .sidebar .btn:hover {
+            background: #facc15;
+            color: #2a1f1f;
+        }
+
+        /* ACTIVE / FOCUS */
+        .sidebar .btn.active,
+        .sidebar .btn:focus {
+            background: #facc15;
+            color: #2a1f1f;
+            outline: none;
+        }
+
+        .sidebar .btn.active i,
+        .sidebar .btn:focus i {
+            color: #2a1f1f;
+            font-weight: 700;
+        }
+
+        /* LOGOUT */
+        .logout {
+            border-top: 1px solid #374151;
+            padding: 10px 0;
+        }
+
+        .logout .btn {
+            color: #ef4444;
+            font-weight: 600;
+        }
+
+        .logout .btn:hover {
+            background: transparent;
+            color: #ef4444;
+        }
+
+        /* CONTENT */
+        .content-area {
+            margin-left: 240px;
+            padding: 25px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+            .content-area {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<form runat="server">
+
+<!-- ========== SIDEBAR ========== -->
+<div class="sidebar">
+
+    <!-- BRAND -->
+    <a href="Dashboard.aspx" class="sidebar-brand d-flex align-items-center gap-2">
+    <img src="../Images/Icon.png" alt="Sri Mobile"
+         style="width:28px;height:28px;">
+    <span>Sri Mobile Admin</span>
+</a>
+
+    <!-- MENU -->
+    <div class="sidebar-menu">
+
+        <asp:LinkButton ID="btnDashboard" runat="server"
+            CssClass="btn"
+            OnClick="btnDashboard_Click">
+            <i class="fa fa-chart-line me-2"></i> Dashboard
+        </asp:LinkButton>
+
+        <asp:LinkButton ID="btnAddProducts" runat="server"
+            CssClass="btn"
+            OnClick="btnAddProducts_Click">
+            <i class="fa fa-plus-circle me-2"></i> Add Products
+        </asp:LinkButton>
+
+        <asp:LinkButton ID="btnProducts" runat="server"
+            CssClass="btn"
+            OnClick="btnProducts_Click">
+            <i class="fa fa-box me-2"></i> Products
+        </asp:LinkButton>
+
+        <asp:LinkButton ID="btnOrders" runat="server"
+            CssClass="btn"
+            OnClick="btnOrders_Click">
+            <i class="fa fa-shopping-cart me-2"></i> Orders
+        </asp:LinkButton>
+
+    </div>
+
+    <!-- LOGOUT -->
+    <div class="logout">
+        <asp:LinkButton ID="btnLogout" runat="server"
+            CssClass="btn"
+            OnClick="btnLogout_Click">
+            <i class="fa fa-sign-out-alt me-2"></i> Logout
+        </asp:LinkButton>
+    </div>
+
+</div>
+
+<!-- ========== PAGE CONTENT ========== -->
+<div class="content-area">
+    <asp:ContentPlaceHolder ID="AdminContent" runat="server" />
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</form>
+</body>
+</html>
