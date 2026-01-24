@@ -81,11 +81,11 @@
             </div>
         </div>
 
-        <div class="col-xl-3 col-md-4 col-6">
+ <div class="col-xl-3 col-md-4 col-6">
             <div class="card dash-card">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
-                        <div class="dash-title">TOTAL ORDERS</div>
+                        <div class="dash-title"> ORDERS</div>
                         <div class="dash-value"><asp:Label ID="lblOrders" runat="server" /></div>
                     </div>
                     <div class="dash-icon bg-green"><i class="fa fa-shopping-cart"></i></div>
