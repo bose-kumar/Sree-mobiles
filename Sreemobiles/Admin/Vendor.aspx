@@ -90,9 +90,7 @@ letter-spacing: .5px;*/
                     <asp:TextBox ID="txtAddress" runat="server"
                         CssClass="form-control" TextMode="MultiLine" Rows="2" />
 
-                    <label class="form-label mt-1">TIN No.</label>
-                    <asp:TextBox ID="txtTIN" runat="server" CssClass="form-control" />
-
+                    
                     <label class="form-label mt-1">GST No.</label>
                     <asp:TextBox ID="txtGST" runat="server" CssClass="form-control" />
 
