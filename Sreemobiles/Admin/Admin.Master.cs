@@ -19,10 +19,7 @@ namespace Sri_Mobiles.Admin
             Response.Redirect("~/Admin/Dashboard.aspx");
         }
 
-        protected void btnAddProducts_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Admin/AddProduct.aspx");
-        }
+       
 
         protected void btnProducts_Click(object sender, EventArgs e)
         {
