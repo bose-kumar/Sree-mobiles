@@ -7,20 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sri_Mobiles.Admin
+namespace Sreemobiles.Admin
 {
 
 
-    public partial class Product
+    public partial class Purchase
     {
-
-        /// <summary>
-        /// gvProducts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProducts;
     }
 }

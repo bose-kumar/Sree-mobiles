@@ -1,49 +1,54 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="Product.aspx.cs" Inherits="Sri_Mobiles.Admin.Product" %>
+﻿<%@ Page Title="Product List" Language="C#"
+    MasterPageFile="~/Admin/Admin.Master"
+    AutoEventWireup="true"
+    CodeBehind="Product.aspx.cs"
+    Inherits="Sri_Mobiles.Admin.Product" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminContent" runat="server">
-  
 
 <div class="container mt-4">
 
-    <!-- PAGE TITLE -->
-    <h2 class="mb-3">
-        <i class="fa fa-box"></i> Product List
-    </h2>
+    <a href="AddProduct.aspx" class="btn btn-primary mb-3">+ Add Product</a>
 
-    <!-- SEARCH BAR (UI ONLY) -->
-    <div class="row mb-3">
-        <div class="col-md-4">
-            <input type="text" class="form-control"
-                   placeholder="Search product..." />
-        </div>
-    </div>
+    <asp:GridView ID="gvProducts" runat="server"
+        AutoGenerateColumns="false"
+        CssClass="table table-bordered">
 
-    <!-- PRODUCT TABLE -->
-    <div class="card shadow-sm">
-        <div class="card-body">
+        <Columns>
+            <asp:BoundField DataField="ProductId" HeaderText="ID"/>
+            <asp:BoundField DataField="ProductName" HeaderText="Name"/>
+            <asp:BoundField DataField="BrandName" HeaderText="Brand"/>
+            <asp:BoundField DataField="Category" HeaderText="Category"/>
+            <asp:BoundField DataField="Price" HeaderText="Price"/>
+            <asp:BoundField DataField="Quantity" HeaderText="Qty"/>
 
-            <div class="table-responsive">
-                <asp:GridView runat="server"
-                    CssClass="table table-bordered table-hover align-middle"
-                    AutoGenerateColumns="false">
+            <asp:TemplateField HeaderText="Image">
+                <ItemTemplate>
+                    <asp:Image runat="server" Width="50"
+                        ImageUrl='<%# Eval("MainImage") %>'/>
+                </ItemTemplate>
+            </asp:TemplateField>
 
-                    <Columns>
-                        <asp:BoundField HeaderText="Product Name" />
-                        <asp:BoundField HeaderText="Brand" />
-                        <asp:BoundField HeaderText="Category" />
-                        <asp:BoundField HeaderText="Price (₹)" />
-                        <asp:BoundField HeaderText="Rating" />
-                    </Columns>
+            <asp:TemplateField HeaderText="Edit">
+                <ItemTemplate>
+                    <a href='AddProduct.aspx?id=<%# Eval("ProductId") %>'
+                       class="btn btn-warning btn-sm">Edit</a>
+                </ItemTemplate>
+            </asp:TemplateField>
 
-                </asp:GridView>
-            </div>
+            <asp:TemplateField HeaderText="Delete">
+                <ItemTemplate>
+                    <asp:LinkButton runat="server"
+                        Text="Delete"
+                        CssClass="btn btn-danger btn-sm"
+                        CommandArgument='<%# Eval("ProductId") %>'
+                        OnClientClick="return confirm('Delete?');"/>
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
 
-        </div>
-    </div>
+    </asp:GridView>
 
 </div>
 
 </asp:Content>
-
-
-
-
