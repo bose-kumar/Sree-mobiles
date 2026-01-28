@@ -31,10 +31,14 @@
     }
 
     .form-label{
-   font-size: 12px;
+/*   font-size: 12px;
 color: #6b7280;
 font-weight: 600;
-letter-spacing: .5px;
+letter-spacing: .5px;*/
+ font-size:14px;
+ font-weight:600;
+ color:#374151;
+ margin-bottom:2px
 }
 
 
