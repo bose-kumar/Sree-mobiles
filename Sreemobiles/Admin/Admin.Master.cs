@@ -34,6 +34,12 @@ namespace Sri_Mobiles.Admin
             Response.Redirect("~/Admin/Order.aspx");
         }
 
+        protected void btnPurchase_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Admin/Purchase.aspx");
+        }
+
+
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             Response.Redirect("Login.aspx");

@@ -166,6 +166,12 @@
             <i class="fa fa-shopping-cart me-2"></i> Orders
         </asp:LinkButton>
 
+        <asp:LinkButton ID="btnPurchase" runat="server"
+       CssClass="btn"
+       OnClick="btnPurchase_Click">
+       <i class="fa fa-shopping-basket me-2"></i> Purchase
+   </asp:LinkButton>
+
     </div>
 
     <!-- LOGOUT -->
