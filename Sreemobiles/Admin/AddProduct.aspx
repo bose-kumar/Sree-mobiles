@@ -2,113 +2,103 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminContent" runat="server">
 
 
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
 <style>
-    body {
-        background: #f4f6fb;
+    body{background:#f4f6fb}
+    h3{margin-bottom:12px}
+
+    .form-card{
+        border-radius:14px;
+        border:none;
+        background:#fff;
+        box-shadow:0 8px 20px rgba(0,0,0,.06)
     }
 
-    .page-title {
-        font-size: 20px;
-        font-weight: 700;
-        color: #111827;
+    .card-body{padding:18px}
+
+    .section-title{
+        font-size:12px;
+        font-weight:700;
+        color:#374151;
+        margin-bottom:8px;
+        text-transform:uppercase;
+        letter-spacing:.5px;
+        display:flex;
+        align-items:center;
+        gap:6px
     }
 
-    .form-card {
-        border-radius: 16px;
-        border: none;
-        background: #ffffff;
-        box-shadow: 0 12px 30px rgba(0,0,0,.08);
+    .form-label{
+   font-size: 12px;
+color: #6b7280;
+font-weight: 600;
+letter-spacing: .5px;
+}
+
+
+    .form-control,.form-select{
+        border-radius:8px;
+        padding:8px 10px;
+        font-size:13px
     }
 
-    .card-header-custom {
-        background: #f9fafb;
-        border-bottom: 1px solid #e5e7eb;
-        padding: 16px 22px;
-        border-radius: 16px 16px 0 0;
-        font-weight: 700;
-        color: #1f2937;
+    .stock-warning{
+        margin-top:4px;
+        padding:6px 10px;
+        border-radius:8px;
+        font-size:12px;
+        font-weight:600;
+        display:none;
+        background:#fff7ed;
+        border:1px solid #fed7aa;
+        color:#9a3412
     }
 
-    .section-title {
-        font-size: 14px;
-        font-weight: 700;
-        color: #374151;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
+    .stock-danger{
+        background:#fef2f2;
+        border-color:#fecaca;
+        color:#7f1d1d
     }
 
-    .form-label {
-        font-size: 13px;
-        font-weight: 600;
-        color: #4b5563;
-    }
-
-    .form-control,
-    .form-select {
-        border-radius: 10px;
-        padding: 10px 12px;
-    }
-
-    .form-control:focus,
-    .form-select:focus {
-        border-color: #0ea5e9;
-        box-shadow: 0 0 0 .15rem rgba(14,165,233,.2);
-    }
-
-    /* SAVE BUTTON */
-    .btn-save {
-        background: linear-gradient(135deg, #0ea5e9, #0284c7);
-        border: none;
-        color: #fff;
-        font-weight: 700;
-        padding: 12px 34px;
-        border-radius: 12px;
-        transition: all .25s ease;
-    }
-
-    .btn-save:hover {
-        background: linear-gradient(135deg, #0284c7, #0369a1);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(2,132,199,.35);
+    .btn-save{
+        background:linear-gradient(135deg,#16a34a,#166534);
+        border:none;
+        color:#fff;
+        font-weight:700;
+        padding:10px 28px;
+        border-radius:10px
     }
 </style>
 
-<div class="container-fluid mt-4">
+<div class="container-fluid mt-3">
+    <h3 class="fw-bold">Add Product</h3>
 
-    <div class="page-title mb-3">🛒 Add / Edit Product</div>
-
+    <!-- CARD START -->
     <div class="card form-card">
-
-        <div class="card-header-custom">
-            Product Management
-        </div>
-
-        <div class="card-body px-4 py-4">
+        <div class="card-body">
 
             <!-- PRODUCT INFO -->
-            <div class="section-title">
-                <i class="fa fa-circle-info text-primary"></i> Product Information
-            </div>
-
-            <div class="row g-4 mb-4">
-
-                <div class="col-md-6">
-                    <label class="form-label">Product Name</label>
-                    <asp:TextBox runat="server" CssClass="form-control"
-                        Placeholder="e.g. Samsung Galaxy S23" />
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Product ID</label>
+                    <asp:TextBox ID="txtProductID" runat="server" CssClass="form-control" ReadOnly="true" />
                 </div>
 
-                <div class="col-md-6">
-                    <label class="form-label">Brand Name</label>
-                    <asp:TextBox runat="server" CssClass="form-control"
-                        Placeholder="e.g. Samsung" />
+                <div class="col-md-4">
+                    <label class="form-label">Product Name</label>
+                    <asp:TextBox ID="txtProductName" runat="server" CssClass="form-control" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Brand</label>
+                    <asp:TextBox ID="txtBrand" runat="server" CssClass="form-control" />
                 </div>
 
                 <div class="col-md-4">
                     <label class="form-label">Category</label>
-                    <asp:DropDownList runat="server" CssClass="form-select">
+                    <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-select">
                         <asp:ListItem Text="Mobile" />
                         <asp:ListItem Text="Accessories" />
                         <asp:ListItem Text="TV" />
@@ -117,72 +107,83 @@
 
                 <div class="col-md-4">
                     <label class="form-label">Price (₹)</label>
-                    <asp:TextBox runat="server" CssClass="form-control"
-                        Placeholder="e.g. 24999" />
+                    <asp:TextBox ID="txtPrice" runat="server" CssClass="form-control" />
                 </div>
 
+                <div class="col-md-4">
+                    <label class="form-label">Quantity</label>
+                    <asp:TextBox ID="txtQty" runat="server"
+                        CssClass="form-control" onkeyup="checkStock()" />
+                    <div id="stockMsg" class="stock-warning"></div>
+                </div>
             </div>
 
             <!-- DETAILS -->
-            <div class="section-title">
-                <i class="fa fa-list text-success"></i> Product Details
+            <div class="section-title mt-3">
+                <i class="fa fa-list text-success"></i> Details
             </div>
 
-            <div class="row g-4 mb-4">
-
+            <div class="row g-3">
                 <div class="col-md-6">
                     <label class="form-label">Description</label>
-                    <asp:TextBox runat="server" TextMode="MultiLine"
-                        Rows="4" CssClass="form-control"
-                        Placeholder="Short product description" />
+                    <asp:TextBox ID="txtDesc" runat="server"
+                        CssClass="form-control" TextMode="MultiLine" Rows="3" />
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label">Specifications</label>
-                    <asp:TextBox runat="server" TextMode="MultiLine"
-                        Rows="4" CssClass="form-control"
-                        Placeholder="Technical specifications" />
+                    <asp:TextBox ID="txtSpec" runat="server"
+                        CssClass="form-control" TextMode="MultiLine" Rows="3" />
                 </div>
-
             </div>
 
             <!-- IMAGES -->
-            <div class="section-title">
-                <i class="fa fa-image text-warning"></i> Product Images
+            <div class="section-title mt-3">
+                <i class="fa fa-image text-warning"></i> Images
             </div>
 
-            <div class="row g-3 mb-4">
-
+            <div class="row g-2">
                 <div class="col-12">
-                    <label class="form-label">Main Image</label>
-                    <asp:FileUpload runat="server" CssClass="form-control" />
+                    <asp:FileUpload ID="fuMain" runat="server" CssClass="form-control" />
                 </div>
-
-                <div class="col-md-3">
-                    <asp:FileUpload runat="server" CssClass="form-control" />
-                </div>
-                <div class="col-md-3">
-                    <asp:FileUpload runat="server" CssClass="form-control" />
-                </div>
-                <div class="col-md-3">
-                    <asp:FileUpload runat="server" CssClass="form-control" />
-                </div>
-                <div class="col-md-3">
-                    <asp:FileUpload runat="server" CssClass="form-control" />
-                </div>
-
+                <div class="col-md-3"><asp:FileUpload runat="server" CssClass="form-control" /></div>
+                <div class="col-md-3"><asp:FileUpload runat="server" CssClass="form-control" /></div>
+                <div class="col-md-3"><asp:FileUpload runat="server" CssClass="form-control" /></div>
+                <div class="col-md-3"><asp:FileUpload runat="server" CssClass="form-control" /></div>
             </div>
 
             <!-- ACTION -->
-            <div class="text-end mt-4">
-                <asp:Button runat="server"
-                    CssClass="btn btn-save"
-                    Text="Save Product" />
+            <div class="text-end mt-3">
+                <asp:Button ID="btnSave" runat="server"
+                    Text="Save Product" CssClass="btn btn-warning" />
             </div>
 
         </div>
     </div>
+    <!-- CARD END -->
+
 </div>
 
+<script>
+    function checkStock() {
+        let qty = document.getElementById('<%= txtQty.ClientID %>').value || 0;
+        let msg = document.getElementById('stockMsg');
+        qty = parseInt(qty);
+
+        if (qty === 0) {
+            msg.style.display = "block";
+            msg.classList.add("stock-danger");
+            msg.innerHTML = "Out of Stock";
+        }
+        else if (qty <= 5) {
+            msg.style.display = "block";
+            msg.classList.remove("stock-danger");
+            msg.innerHTML = "Low stock (" + qty + ")";
+        }
+        else {
+            msg.style.display = "none";
+        }
+    }
+</script>
+
 </asp:Content>
-   

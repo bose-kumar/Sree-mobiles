@@ -41,5 +41,10 @@ namespace Sri_Mobiles.Admin
         {
             Response.Redirect("Login.aspx");
         }
+
+        protected void btnVendor_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Vendor.aspx");
+        }
     }
 }

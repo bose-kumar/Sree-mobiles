@@ -72,6 +72,7 @@
     <Content Include="Admin\Order.aspx" />
     <Content Include="Admin\Product.aspx" />
     <Content Include="Admin\Purchase.aspx" />
+    <Content Include="Admin\Vendor.aspx" />
     <Content Include="Images\Accessories.png" />
     <Content Include="Images\BrandLogo\apple.png" />
     <Content Include="Images\BrandLogo\Asus.png" />
@@ -147,6 +148,13 @@
     </Compile>
     <Compile Include="Admin\Purchase.aspx.designer.cs">
       <DependentUpon>Purchase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Vendor.aspx.cs">
+      <DependentUpon>Vendor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Vendor.aspx.designer.cs">
+      <DependentUpon>Vendor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

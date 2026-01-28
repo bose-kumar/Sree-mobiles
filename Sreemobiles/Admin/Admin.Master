@@ -168,6 +168,12 @@
        <i class="fa fa-shopping-basket me-2"></i> Purchase
    </asp:LinkButton>
 
+             <asp:LinkButton ID="btnVendor" runat="server"
+    CssClass="btn"
+    OnClick="btnVendor_Click">
+    <i class="fa fa-store me-2"></i> Vendor
+</asp:LinkButton>
+
     </div>
 
     <!-- LOGOUT -->
