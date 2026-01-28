@@ -1,18 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="Product.aspx.cs" Inherits="Sri_Mobiles.Admin.Product" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminContent" runat="server">
-  
-
+ 
 <div class="container mt-4">
 
-    <!-- PAGE TITLE -->
-    <h2 class="mb-3">
-        <i class="fa fa-box"></i> Product List
-    </h2>
+    <!-- TITLE LEFT | BUTTON RIGHT -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">
+            <i class="fa fa-box"></i> Product List
+        </h2>
+
+        <!-- TOP RIGHT BUTTON -->
+        <asp:Button ID="btnAddProduct"
+            runat="server"
+            Text="Add Product"
+            CssClass="btn btn-warning" OnClick="btnAddProduct_Click" />
+    </div>
 
     <!-- SEARCH BAR (UI ONLY) -->
     <div class="row mb-3">
         <div class="col-md-4">
-            <input type="text" class="form-control"
+            <input type="text"
+                   class="form-control"
                    placeholder="Search product..." />
         </div>
     </div>
@@ -43,7 +51,3 @@
 </div>
 
 </asp:Content>
-
-
-
-

@@ -148,11 +148,7 @@
             <i class="fa fa-chart-line me-2"></i> Dashboard
         </asp:LinkButton>
 
-        <asp:LinkButton ID="btnAddProducts" runat="server"
-            CssClass="btn"
-            OnClick="btnAddProducts_Click">
-            <i class="fa fa-plus-circle me-2"></i> Add Products
-        </asp:LinkButton>
+      
 
         <asp:LinkButton ID="btnProducts" runat="server"
             CssClass="btn"

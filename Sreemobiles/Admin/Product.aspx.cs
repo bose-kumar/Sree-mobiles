@@ -13,5 +13,10 @@ namespace Sri_Mobiles.Admin
         {
 
         }
+
+        protected void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Admin/AddProduct.aspx");
+        }
     }
 }
