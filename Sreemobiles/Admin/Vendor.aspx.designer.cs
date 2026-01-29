@@ -141,21 +141,12 @@ namespace Sreemobiles.Admin
         protected global::System.Web.UI.WebControls.Button btnView;
 
         /// <summary>
-        /// btnEdit control.
+        /// gvVendors control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEdit;
-
-        /// <summary>
-        /// btnUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdate;
+        protected global::System.Web.UI.WebControls.GridView gvVendors;
     }
 }
