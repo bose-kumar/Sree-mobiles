@@ -4,7 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminContent" runat="server">
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
 <style>
     body { background:#f4f6fb; }
@@ -61,7 +61,7 @@
     <asp:LinkButton 
         ID="btnVendorPayment" 
         runat="server" 
-        CssClass="btn btn-warning" OnClick="btnVendorPayment_Click">
+        CssClass="btn btn-warning" OnClick="btnVendorPayment_Click" >
         <i class="fa fa-indian-rupee-sign me-1"></i> Vendor Payment
     </asp:LinkButton>
 </div>
