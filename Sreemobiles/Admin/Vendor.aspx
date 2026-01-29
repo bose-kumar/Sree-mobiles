@@ -61,7 +61,7 @@
     <asp:LinkButton 
         ID="btnVendorPayment" 
         runat="server" 
-        CssClass="btn btn-warning" OnClick="btnVendorPayment_Click">
+        CssClass="btn btn-warning">
         <i class="fa fa-indian-rupee-sign me-1"></i> Vendor Payment
     </asp:LinkButton>
 </div>
