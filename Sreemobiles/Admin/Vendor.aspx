@@ -48,26 +48,33 @@
 </style>
 
 
-
    
 <div class="d-flex justify-content-between align-items-center mb-2">
 
     <h3 class="fw-bold mb-0">
         <i class="fa fa-store me-1 text-primary"></i> Vendor Master
     </h3>
+</div>
 
-    <asp:Button 
+    
+   <div class="container mt-4 text-end">
+    <asp:LinkButton 
         ID="btnVendorPayment" 
         runat="server" 
-        Text="Vendor Payment"
-        CssClass="btn btn-primary btn-sm"
-        />
-
+        CssClass="btn btn-warning">
+        <i class="fa fa-indian-rupee-sign me-1"></i> Vendor Payment
+    </asp:LinkButton>
 </div>
+
+<div class="mt-3"></div>
+
+
+
+
 
 
     <!-- FORM CARD -->
-    <div class="card form-card">
+ <div class="card form-card">
         <div class="card-body">
 
             <div class="row g-3">
