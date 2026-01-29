@@ -63,8 +63,8 @@
                 <!-- LEFT -->
                 <div class="col-md-6">
                     <label class="form-label">Vendor Id</label>
-                    <asp:TextBox ID="txtVendorCode" runat="server" CssClass="form-control" ReadOnly="true" />
-
+                    <asp:TextBox ID="txtVendorCode" runat="server" CssClass="form-control"/>
+                  
                     <label class="form-label mt-1">Vendor Name</label>
                     <asp:TextBox ID="txtVendorName" runat="server" CssClass="form-control" />
 
@@ -107,8 +107,8 @@
 
             <!-- ACTION BUTTONS -->
             <div class="text-end mt-3">
-                <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-success me-1" />
-                <asp:Button ID="btnView" runat="server" Text="View" CssClass="btn btn-secondary" />
+                <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-success me-1" OnClick="btnSave_Click" />
+                <asp:Button ID="btnView" runat="server" Text="View" CssClass="btn btn-secondary"/>
             </div>
 
         </div>
@@ -128,7 +128,7 @@
                 EmptyDataText="No Vendors Found">
 
                 <Columns>
-                    <asp:BoundField DataField="VendorCode" HeaderText="Code" />
+                    <asp:BoundField DataField="VendorId" HeaderText="Code" />
                     <asp:BoundField DataField="VendorName" HeaderText="Vendor Name" />
                     <asp:BoundField DataField="MobileNo" HeaderText="Mobile" />
                     <asp:BoundField DataField="GSTNo" HeaderText="GST No" />
@@ -141,7 +141,7 @@
                             <!-- EDIT -->
                             <asp:LinkButton runat="server"
                                 CommandName="EditVendor"
-                                CommandArgument='<%# Eval("VendorCode") %>'
+                                CommandArgument='<%# Eval("VendorId") %>'
                                 CssClass="btn btn-sm btn-outline-primary me-1"
                                 ToolTip="Edit">
                                 <i class="fa fa-pen"></i>
@@ -150,7 +150,7 @@
                             <!-- DELETE -->
                             <asp:LinkButton runat="server"
                                 CommandName="DeleteVendor"
-                                CommandArgument='<%# Eval("VendorCode") %>'
+                                CommandArgument='<%# Eval("VendorId") %>'
                                 CssClass="btn btn-sm btn-outline-danger"
                                 ToolTip="Delete"
                                 OnClientClick="return confirm('Are you sure to delete?');">
@@ -167,5 +167,4 @@
     </div>
 
 </div>
-
 </asp:Content>
