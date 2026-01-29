@@ -22,7 +22,7 @@ namespace Sreemobiles.Admin
                
                 
                 string prefix = "VEN";
-                int id = GetAutoID();
+                int id = Convert.ToInt32(GetAutoID());
                 string vendorCode = prefix + id.ToString("D2");
                 txtVendorCode.Text = vendorCode;
                 BindVendorGrid();
@@ -30,12 +30,12 @@ namespace Sreemobiles.Admin
 
         }
 
-        private int GetAutoID() {
+        private string GetAutoID() {
 
             con.Open();
             SqlCommand cmd = new SqlCommand("Proc_GetAutoId", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            int id = Convert.ToInt32(cmd.ExecuteScalar());
+             string id = Convert.ToString(cmd.ExecuteScalar());
             con.Close();
             return id;
 
