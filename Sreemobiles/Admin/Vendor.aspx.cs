@@ -18,8 +18,27 @@ namespace Sreemobiles.Admin
         {
             if (!IsPostBack)
             {
-                BindVendorGrid();   // Page load-la grid bind
+
+               
+                
+                string prefix = "VEN";
+                int id = GetAutoID();
+                string vendorCode = prefix + id.ToString("D2");
+                txtVendorCode.Text = vendorCode;
+                BindVendorGrid();
             }
+
+        }
+
+        private int GetAutoID() {
+
+            con.Open();
+            SqlCommand cmd = new SqlCommand("Proc_GetAutoId", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            int id = Convert.ToInt32(cmd.ExecuteScalar());
+            con.Close();
+            return id;
+
 
         }
         //Save Button Click Event
