@@ -46,7 +46,7 @@ namespace Sreemobiles.Admin
             con.Close();
 
             ClearFields();       // textbox clear
-            BindVendorGrid();   // save ku apram grid refresh
+            BindVendorGrid();   // 
         }
         // 🔹 GRID BIND METHOD
         void BindVendorGrid()
@@ -78,5 +78,9 @@ namespace Sreemobiles.Admin
             txtIFSC.Text = "";
         }
 
+        protected void btnVendorPayment_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("VendorPayment.aspx");
+        }
     }
 }
