@@ -78,11 +78,11 @@ namespace Sreemobiles.Admin
             txtIFSC.Text = "";
         }
 
-        protected void btnVendorPayment_Click(object sender, EventArgs e)
+       
+
+        protected void btnVendorPayment_Click1(object sender, EventArgs e)
         {
             Response.Redirect("VendorPayment.aspx");
         }
-
-        
     }
 }
