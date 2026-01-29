@@ -47,12 +47,24 @@
     }
 </style>
 
-<div class="container-fluid">
 
-    <!-- PAGE TITLE -->
-    <h3 class="fw-bold">
+
+   
+<div class="d-flex justify-content-between align-items-center mb-2">
+
+    <h3 class="fw-bold mb-0">
         <i class="fa fa-store me-1 text-primary"></i> Vendor Master
     </h3>
+
+    <asp:Button 
+        ID="btnVendorPayment" 
+        runat="server" 
+        Text="Vendor Payment"
+        CssClass="btn btn-primary btn-sm"
+        />
+
+</div>
+
 
     <!-- FORM CARD -->
     <div class="card form-card">

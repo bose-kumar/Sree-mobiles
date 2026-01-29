@@ -97,13 +97,19 @@
         }
 
         .logout .btn {
-            color: #ef4444;
-            font-weight: 600;
+          background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    font-size: 18px;
+    font-weight: bold;
+/*    border-radius: 8px;*/
+    cursor: pointer;
         }
 
         .logout .btn:hover {
-            background: transparent;
-            color: #ef4444;
+/*            background: transparent;*/
+            color: #cc0000;
         }
 
         /* CONTENT */
