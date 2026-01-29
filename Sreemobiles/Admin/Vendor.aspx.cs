@@ -35,11 +35,11 @@ namespace Sreemobiles.Admin
             con.Open();
             SqlCommand cmd = new SqlCommand("Proc_GetAutoId", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            int id = Convert.ToInt32(cmd.ExecuteScalar());
+            string id = Convert.ToInt32(cmd.ExecuteScalar());
             con.Close();
             return id;
 
-
+       
         }
         //Save Button Click Event
         protected void btnSave_Click(object sender, EventArgs e)
