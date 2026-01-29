@@ -103,6 +103,7 @@ letter-spacing: .5px;*/
                 <div class="col-md-4">
                     <label class="form-label">Category</label>
                     <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-select">
+                       <asp:ListItem Text="SELECT" />
                         <asp:ListItem Text="Mobile" />
                         <asp:ListItem Text="Accessories" />
                         <asp:ListItem Text="TV" />

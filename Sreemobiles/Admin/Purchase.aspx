@@ -18,7 +18,7 @@
         font-size: 24px;
         font-weight: 700;
         color: #2c2c2c;
-        border-bottom: 3px solid #ff7043;
+/*        border-bottom: 3px solid #ff7043;*/
         padding-bottom: 8px;
         margin-bottom: 18px;
     }
@@ -101,7 +101,7 @@
 
     <!-- HEADER -->
     <div class="header">
-        <i class="fa fa-file-invoice"></i> PURCHASE INVOICE
+        <i class="fa fa-file-invoice"></i>Purchase Invoice
     </div>
 
     <!-- TOP DETAILS -->
@@ -261,10 +261,13 @@
 
 
 <div style="margin-top:10px">
-    <asp:Button ID="btnAddProduct" runat="server"
-        Text="+ Add Product"
-        CssClass="btn-new" OnClick="btnAddProduct_Click"/>
+    <asp:Button ID="btnAddItem" runat="server"
+        Text="+ Add Item"
+        CssClass="btn-new" OnClick="btnAddItem_Click"/>
 </div>
+
+
+   
 
     <!-- SUMMARY -->
     <div class="section-title">Invoice Summary</div>
@@ -298,8 +301,8 @@
 
     <!-- BUTTONS -->
     <div style="margin-top:22px; text-align:right">
-        <asp:Button Text="SAVE" runat="server" CssClass="btn-save" />
-        <asp:Button Text="NEW INVOICE" runat="server" CssClass="btn-new" />
+        <asp:Button Text="SAVE" runat="server" CssClass="btn btn-warning" />
+        <asp:Button Text="NEW INVOICE" runat="server" CssClass="btn btn-warning" />
     </div>
 
 </div>
