@@ -18,5 +18,10 @@ namespace Sreemobiles.Admin
             }
 
         }
+
+        protected void btnVendorPayment_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("VendorPayment.aspx");
+        }
     }
 }

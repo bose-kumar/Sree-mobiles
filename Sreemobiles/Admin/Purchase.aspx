@@ -261,10 +261,13 @@
 
 
 <div style="margin-top:10px">
-    <asp:Button ID="btnAddProduct" runat="server"
-        Text="+ Add Product"
-        CssClass="btn-new" OnClick="btnAddProduct_Click"/>
+    <asp:Button ID="btnAddItem" runat="server"
+        Text="+ Add Item"
+        CssClass="btn-new" OnClick="btnAddItem_Click"/>
 </div>
+
+
+   
 
     <!-- SUMMARY -->
     <div class="section-title">Invoice Summary</div>

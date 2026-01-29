@@ -75,7 +75,7 @@ namespace Sreemobiles.Admin
         }
 
 
-        protected void btnAddProduct_Click(object sender, EventArgs e)
+        protected void btnAddItem_Click(object sender, EventArgs e)
         {
             UpdateDataTableFromGrid();
             DataTable dt = ViewState["Products"] as DataTable;
