@@ -18,28 +18,26 @@ namespace Sreemobiles.Admin
         {
             if (!IsPostBack)
             {
-
-               
-                
-                string prefix = "VEN";
-                int id = Convert.ToInt32(GetAutoID());
-                string vendorCode = prefix + id.ToString("D2");
-                txtVendorCode.Text = vendorCode;
                 BindVendorGrid();
+                GetAutoID();
             }
 
         }
 
-        private string GetAutoID() {
+        private void GetAutoID() {
 
             con.Open();
             SqlCommand cmd = new SqlCommand("Proc_GetAutoId", con);
             cmd.CommandType = CommandType.StoredProcedure;
-             string id = Convert.ToString(cmd.ExecuteScalar());
+             int id = Convert.ToInt32(cmd.ExecuteScalar());
             con.Close();
-            return id;
+            string prefix = "VEN";
+            string vendorCode = prefix + id.ToString("D2");
+            txtVendorCode.Text = vendorCode;
+            //int id = Convert.ToInt32(GetAutoID());
+            
 
-       
+
         }
         //Save Button Click Event
         protected void btnSave_Click(object sender, EventArgs e)
@@ -64,7 +62,8 @@ namespace Sreemobiles.Admin
             cmd.ExecuteNonQuery();
             con.Close();
 
-            ClearFields();       // textbox clear
+            ClearFields();
+            GetAutoID();// textbox clear
             BindVendorGrid();   // 
         }
         // 🔹 GRID BIND METHOD
