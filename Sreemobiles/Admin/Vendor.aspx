@@ -147,11 +147,11 @@
                 EmptyDataText="No Vendors Found">
 
                 <Columns>
-                    <asp:BoundField DataField="VendorId" HeaderText="Code" />
-                    <asp:BoundField DataField="VendorName" HeaderText="Vendor Name" />
-                    <asp:BoundField DataField="MobileNo" HeaderText="Mobile" />
-                    <asp:BoundField DataField="GSTNo" HeaderText="GST No" />
-                    <asp:BoundField DataField="BankName" HeaderText="Bank" />
+                    <asp:BoundField DataField="VendorId" HeaderText="VendorId" />
+                    <asp:BoundField DataField="VendorName" HeaderText="VendorName" />
+                    <asp:BoundField DataField="MobileNo" HeaderText="MobileNo" />
+                    <asp:BoundField DataField="GSTNo" HeaderText="GSTNo" />
+                    <asp:BoundField DataField="BankName" HeaderText="BankName" />
 
                    
                     <asp:TemplateField HeaderText="Action">
@@ -185,5 +185,5 @@
         </div>
     </div>
 
-</div>
+
 </asp:Content>

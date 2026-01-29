@@ -50,7 +50,7 @@ namespace Sreemobiles.Admin
         }
         // 🔹 GRID BIND METHOD
         void BindVendorGrid()
-        {
+          {
             SqlCommand cmd = new SqlCommand("sp_GetVendors", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
