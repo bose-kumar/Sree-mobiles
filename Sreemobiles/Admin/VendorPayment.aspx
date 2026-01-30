@@ -50,6 +50,15 @@
                     </asp:DropDownList>
                 </div>
 
+                <!-- Invoice -->
+<div class="col-md-4">
+    <label class="form-label">Invoice No</label>
+    <asp:TextBox 
+        ID="txtInvoice" 
+        runat="server" 
+        CssClass="form-control" />
+    </div>
+
                 <!-- PAYMENT DATE -->
                 <div class="col-md-4">
                     <label class="form-label">Payment Date</label>
@@ -77,21 +86,32 @@
 
                 <!-- AMOUNT -->
                 <div class="col-md-4">
-                    <label class="form-label">Amount</label>
+                    <label class="form-label">Total Amount</label>
                     <asp:TextBox 
-                        ID="txtAmount" 
+                        ID="txtTotalAmount" 
                         runat="server" 
                         CssClass="form-control" />
                 </div>
 
-                <!-- REFERENCE -->
-                <div class="col-md-4">
-                    <label class="form-label">Reference No</label>
-                    <asp:TextBox 
-                        ID="txtReference" 
-                        runat="server" 
-                        CssClass="form-control" />
-                </div>
+                <!--Paid  AMOUNT -->
+<div class="col-md-4">
+    <label class="form-label">Paid Amount</label>
+    <asp:TextBox 
+        ID="txtPaidlAmount" 
+        runat="server" 
+        CssClass="form-control" />
+</div>
+                <!-- Balance  AMOUNT -->
+<div class="col-md-4">
+    <label class="form-label">Balance Amount</label>
+    <asp:TextBox 
+        ID="txtBalanceAmount" 
+        runat="server" 
+        CssClass="form-control" />
+</div>
+
+                
+                
 
                 <!-- REMARKS -->
                 <div class="col-md-12">
