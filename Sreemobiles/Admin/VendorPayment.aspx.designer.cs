@@ -33,13 +33,13 @@ namespace Sreemobiles.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddlVendorName;
 
         /// <summary>
-        /// txtInvoice control.
+        /// ddlInvoice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInvoice;
+        protected global::System.Web.UI.WebControls.DropDownList ddlInvoice;
 
         /// <summary>
         /// txtPaymentDate control.
@@ -112,5 +112,14 @@ namespace Sreemobiles.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnClear;
+
+        /// <summary>
+        /// gvPayments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvPayments;
     }
 }
