@@ -15,7 +15,8 @@ namespace Sreemobiles.Admin
         string cs = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
+            
                 if (!IsPostBack)
                 {
                     LoadVendors();
@@ -24,14 +25,11 @@ namespace Sreemobiles.Admin
                 }
             }
 
-            // -------------------------
-            // Load vendor dropdown
-            // -------------------------
             void LoadVendors()
             {
                 using (SqlConnection con = new SqlConnection(cs))
-                using (SqlDataAdapter da = new SqlDataAdapter(
-                    "SELECT VendorCode,VendorName FROM dbo.VendorMaster", con))
+                using (SqlDataAdapter da =
+                    new SqlDataAdapter("SELECT VendorCode,VendorName FROM dbo.VendorMaster", con))
                 {
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -50,50 +48,33 @@ namespace Sreemobiles.Admin
                 }
             }
 
-            // -------------------------
-            // ID select panna ellaa labelum show
-            // -------------------------
-            void LoadVendorDetails(int vendorCode)
+            void LoadVendorDetails(int id)
             {
                 using (SqlConnection con = new SqlConnection(cs))
-                using (SqlCommand cmd = new SqlCommand(
-                    @"SELECT MobileNo,VendorAddress
-                  FROM dbo.VendorMaster
-                  WHERE VendorCode=@VendorCode", con))
+                using (SqlCommand cmd =
+                    new SqlCommand("SELECT MobileNo,VendorAddress FROM dbo.VendorMaster WHERE VendorCode=@id", con))
                 {
-                    cmd.Parameters.Add("@VendorCode", SqlDbType.Int).Value = vendorCode;
-
+                    cmd.Parameters.AddWithValue("@id", id);
                     con.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
 
+                    SqlDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
                         lblMobile.Text = dr["MobileNo"].ToString();
                         lblAddress.Text = dr["VendorAddress"].ToString();
                     }
-                    else
-                    {
-                        lblMobile.Text = "";
-                        lblAddress.Text = "";
-                    }
                 }
             }
 
-            // -------------------------
-            // Load invoice dropdown
-            // -------------------------
-            void LoadInvoices(int vendorCode)
+            void LoadInvoices(int id)
             {
                 ddlInvoice.Items.Clear();
 
                 using (SqlConnection con = new SqlConnection(cs))
-                using (SqlDataAdapter da = new SqlDataAdapter(
-                    @"SELECT InvoiceNo,TotalAmount
-                  FROM dbo.VendorInvoice
-                  WHERE VendorCode=@VendorCode", con))
+                using (SqlDataAdapter da =
+                    new SqlDataAdapter("SELECT InvoiceNo,TotalAmount FROM dbo.VendorInvoice WHERE VendorCode=@id", con))
                 {
-                    da.SelectCommand.Parameters.Add("@VendorCode", SqlDbType.Int)
-                        .Value = vendorCode;
+                    da.SelectCommand.Parameters.AddWithValue("@id", id);
 
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -106,9 +87,6 @@ namespace Sreemobiles.Admin
                 }
             }
 
-            // -------------------------
-            // Vendor change
-            // -------------------------
             protected void ddlVendorCode_SelectedIndexChanged(object sender, EventArgs e)
             {
                 ddlVendorName.SelectedValue = ddlVendorCode.SelectedValue;
@@ -133,55 +111,40 @@ namespace Sreemobiles.Admin
                 }
             }
 
-            // -------------------------
-            // Invoice select
-            // -------------------------
             protected void ddlInvoice_SelectedIndexChanged(object sender, EventArgs e)
             {
                 if (ddlInvoice.SelectedIndex == 0) return;
 
                 using (SqlConnection con = new SqlConnection(cs))
-                using (SqlCommand cmd = new SqlCommand(
-                    @"SELECT TotalAmount
-                  FROM dbo.VendorInvoice
-                  WHERE VendorCode=@VendorCode
-                  AND InvoiceNo=@InvoiceNo", con))
+                using (SqlCommand cmd =
+                    new SqlCommand(@"SELECT TotalAmount FROM dbo.VendorInvoice
+                                 WHERE VendorCode=@v AND InvoiceNo=@i", con))
                 {
-                    cmd.Parameters.Add("@VendorCode", SqlDbType.Int)
-                        .Value = Convert.ToInt32(ddlVendorCode.SelectedValue);
-
-                    cmd.Parameters.Add("@InvoiceNo", SqlDbType.VarChar, 50)
-                        .Value = ddlInvoice.SelectedValue;
+                    cmd.Parameters.AddWithValue("@v", ddlVendorCode.SelectedValue);
+                    cmd.Parameters.AddWithValue("@i", ddlInvoice.SelectedValue);
 
                     con.Open();
-                    object val = cmd.ExecuteScalar();
+                    object o = cmd.ExecuteScalar();
 
-                    if (val != null)
+                    if (o != null)
                     {
-                        txtTotalAmount.Text = val.ToString();
-                        txtBalanceAmount.Text = val.ToString();
+                        txtTotalAmount.Text = o.ToString();
+                        txtBalanceAmount.Text = o.ToString();
                     }
                 }
             }
 
-            // -------------------------
-            // Grid load
-            // -------------------------
             void LoadPayments()
             {
                 using (SqlConnection con = new SqlConnection(cs))
-                using (SqlDataAdapter da = new SqlDataAdapter(
-                    @"SELECT P.PaymentId,
-                         V.VendorName,
-                         P.InvoiceNo,
-                         P.PaymentDate,
-                         P.TotalAmount,
-                         P.PaidAmount,
-                         P.BalanceAmount
+                using (SqlDataAdapter da =
+                    new SqlDataAdapter(
+                    @"SELECT P.PaymentId,V.VendorName,P.InvoiceNo,
+                         P.PaymentDate,P.TotalAmount,
+                         P.PaidAmount,P.BalanceAmount
                   FROM dbo.VendorPayment P
                   JOIN dbo.VendorMaster V
-                  ON P.VendorCode=V.VendorCode
-                  ORDER BY P.PaymentId DESC", con))
+                  ON P.VendorCode=V.VendorCode", con))
                 {
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -191,17 +154,16 @@ namespace Sreemobiles.Admin
                 }
             }
 
-            // -------------------------
-            // Save / Update
-            // -------------------------
             protected void btnSave_Click(object sender, EventArgs e)
             {
-                if (ddlVendorCode.SelectedIndex == 0 || ddlInvoice.SelectedIndex == 0)
+                if (ddlVendorCode.SelectedIndex == 0 ||
+                    ddlInvoice.SelectedIndex == 0 ||
+                    string.IsNullOrEmpty(txtPaymentDate.Text))
                     return;
 
                 decimal total = Convert.ToDecimal(txtTotalAmount.Text);
                 decimal paid = Convert.ToDecimal(txtPaidlAmount.Text);
-                decimal balance = total - paid;
+                decimal bal = total - paid;
 
                 using (SqlConnection con = new SqlConnection(cs))
                 {
@@ -209,52 +171,33 @@ namespace Sreemobiles.Admin
 
                     if (ViewState["EditId"] == null)
                     {
-                        cmd = new SqlCommand(@"
-                    INSERT INTO dbo.VendorPayment
+                        cmd = new SqlCommand(
+                        @"INSERT INTO dbo.VendorPayment
                     (VendorCode,InvoiceNo,PaymentDate,PaymentMode,
                      TotalAmount,PaidAmount,BalanceAmount,Remarks)
-                    VALUES
-                    (@VendorCode,@InvoiceNo,@PaymentDate,@PaymentMode,
-                     @TotalAmount,@PaidAmount,@BalanceAmount,@Remarks)", con);
+                    VALUES(@v,@i,@d,@m,@t,@p,@b,@r)", con);
                     }
                     else
                     {
-                        cmd = new SqlCommand(@"
-                    UPDATE dbo.VendorPayment SET
-                        VendorCode=@VendorCode,
-                        InvoiceNo=@InvoiceNo,
-                        PaymentDate=@PaymentDate,
-                        PaymentMode=@PaymentMode,
-                        TotalAmount=@TotalAmount,
-                        PaidAmount=@PaidAmount,
-                        BalanceAmount=@BalanceAmount,
-                        Remarks=@Remarks
-                    WHERE PaymentId=@PaymentId", con);
+                        cmd = new SqlCommand(
+                        @"UPDATE dbo.VendorPayment SET
+                        VendorCode=@v,InvoiceNo=@i,PaymentDate=@d,
+                        PaymentMode=@m,TotalAmount=@t,
+                        PaidAmount=@p,BalanceAmount=@b,Remarks=@r
+                      WHERE PaymentId=@id", con);
 
-                        cmd.Parameters.Add("@PaymentId", SqlDbType.Int)
-                            .Value = Convert.ToInt32(ViewState["EditId"]);
+                        cmd.Parameters.AddWithValue("@id", ViewState["EditId"]);
                     }
 
-                    cmd.Parameters.Add("@VendorCode", SqlDbType.Int)
-                        .Value = Convert.ToInt32(ddlVendorCode.SelectedValue);
-
-                    cmd.Parameters.Add("@InvoiceNo", SqlDbType.VarChar, 50)
-                        .Value = ddlInvoice.SelectedValue;
-
-                    cmd.Parameters.Add("@PaymentDate", SqlDbType.Date)
-                        .Value = DateTime.Parse(txtPaymentDate.Text);
-
-                    cmd.Parameters.Add("@PaymentMode", SqlDbType.VarChar, 30)
-                        .Value = ddlPaymentMode.SelectedItem.Text;
-
-                    cmd.Parameters.Add("@TotalAmount", SqlDbType.Decimal).Value = total;
-                    cmd.Parameters.Add("@PaidAmount", SqlDbType.Decimal).Value = paid;
-                    cmd.Parameters.Add("@BalanceAmount", SqlDbType.Decimal).Value = balance;
-
-                    cmd.Parameters.Add("@Remarks", SqlDbType.VarChar, 200)
-                        .Value = string.IsNullOrWhiteSpace(txtRemarks.Text)
-                        ? (object)DBNull.Value
-                        : txtRemarks.Text;
+                    cmd.Parameters.AddWithValue("@v", ddlVendorCode.SelectedValue);
+                    cmd.Parameters.AddWithValue("@i", ddlInvoice.SelectedValue);
+                    cmd.Parameters.AddWithValue("@d", txtPaymentDate.Text);
+                    cmd.Parameters.AddWithValue("@m", ddlPaymentMode.SelectedItem.Text);
+                    cmd.Parameters.AddWithValue("@t", total);
+                    cmd.Parameters.AddWithValue("@p", paid);
+                    cmd.Parameters.AddWithValue("@b", bal);
+                    cmd.Parameters.AddWithValue("@r",
+                        string.IsNullOrWhiteSpace(txtRemarks.Text) ? (object)DBNull.Value : txtRemarks.Text);
 
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -264,9 +207,6 @@ namespace Sreemobiles.Admin
                 LoadPayments();
             }
 
-            // -------------------------
-            // Edit / Delete
-            // -------------------------
             protected void gvPayments_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
             {
                 int id = Convert.ToInt32(e.CommandArgument);
@@ -284,12 +224,12 @@ namespace Sreemobiles.Admin
             void LoadForEdit(int id)
             {
                 using (SqlConnection con = new SqlConnection(cs))
-                using (SqlCommand cmd = new SqlCommand(
-                    "SELECT * FROM dbo.VendorPayment WHERE PaymentId=@id", con))
+                using (SqlCommand cmd =
+                    new SqlCommand("SELECT * FROM dbo.VendorPayment WHERE PaymentId=@id", con))
                 {
-                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
-
+                    cmd.Parameters.AddWithValue("@id", id);
                     con.Open();
+
                     SqlDataReader dr = cmd.ExecuteReader();
 
                     if (dr.Read())
@@ -304,11 +244,12 @@ namespace Sreemobiles.Admin
                         LoadVendorDetails(vid);
 
                         ddlInvoice.SelectedValue = dr["InvoiceNo"].ToString();
+                        txtPaymentDate.Text = Convert.ToDateTime(dr["PaymentDate"]).ToString("yyyy-MM-dd");
 
-                        txtPaymentDate.Text =
-                            Convert.ToDateTime(dr["PaymentDate"]).ToString("yyyy-MM-dd");
+                        ddlPaymentMode.SelectedIndex =
+                            ddlPaymentMode.Items.IndexOf(
+                            ddlPaymentMode.Items.FindByText(dr["PaymentMode"].ToString()));
 
-                        ddlPaymentMode.SelectedValue = dr["PaymentMode"].ToString();
                         txtTotalAmount.Text = dr["TotalAmount"].ToString();
                         txtPaidlAmount.Text = dr["PaidAmount"].ToString();
                         txtBalanceAmount.Text = dr["BalanceAmount"].ToString();
@@ -322,16 +263,15 @@ namespace Sreemobiles.Admin
             void DeletePayment(int id)
             {
                 using (SqlConnection con = new SqlConnection(cs))
-                using (SqlCommand cmd = new SqlCommand(
-                    "DELETE FROM dbo.VendorPayment WHERE PaymentId=@id", con))
+                using (SqlCommand cmd =
+                    new SqlCommand("DELETE FROM dbo.VendorPayment WHERE PaymentId=@id", con))
                 {
-                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    cmd.Parameters.AddWithValue("@id", id);
                     con.Open();
                     cmd.ExecuteNonQuery();
                 }
             }
 
-            // -------------------------
             void ClearForm()
             {
                 ddlVendorCode.SelectedIndex = 0;
@@ -340,10 +280,10 @@ namespace Sreemobiles.Admin
                 ddlInvoice.Items.Clear();
                 ddlInvoice.Items.Insert(0, "SELECT");
 
+                txtPaymentDate.Text = "";
                 txtTotalAmount.Text = "";
                 txtPaidlAmount.Text = "";
                 txtBalanceAmount.Text = "";
-                txtPaymentDate.Text = "";
                 txtRemarks.Text = "";
 
                 lblMobile.Text = "";
@@ -359,4 +299,3 @@ namespace Sreemobiles.Admin
             }
         }
     }
-
