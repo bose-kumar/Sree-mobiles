@@ -127,7 +127,6 @@
             <!-- ACTION BUTTONS -->
             <div class="text-end mt-3">
                 <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-success me-1" OnClick="btnSave_Click" />
-                <asp:Button ID="btnView" runat="server" Text="View" CssClass="btn btn-secondary"/>
             </div>
 
         </div>
@@ -144,7 +143,7 @@
             <asp:GridView ID="gvVendors" runat="server"
                 AutoGenerateColumns="False"
                 CssClass="table table-bordered table-hover table-sm"
-                EmptyDataText="No Vendors Found">
+                EmptyDataText="No Vendors Found" >
 
                 <Columns>
                     <asp:BoundField DataField="VendorId" HeaderText="VendorId" />

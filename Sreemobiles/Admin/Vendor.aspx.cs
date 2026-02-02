@@ -79,6 +79,8 @@ namespace Sreemobiles.Admin
             gvVendors.DataSource = dt;
             gvVendors.DataBind();
         }
+
+
         // 🔹 CLEAR TEXTBOXES
         void ClearFields()
         {
@@ -102,5 +104,7 @@ namespace Sreemobiles.Admin
         {
             Response.Redirect("VendorPayment.aspx");
         }
+
+      
     }
 }
