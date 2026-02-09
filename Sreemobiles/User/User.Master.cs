@@ -9,9 +9,9 @@ namespace Sri_Mobiles.User
 {
     public partial class User : System.Web.UI.MasterPage
     {
-        protected void Page_Load(object sender, EventArgs e)
+             protected void Page_Load(object sender, EventArgs e)
         {
-
+            LoadCartCount();
         }
 
         protected void btn_Home_Click(object sender, EventArgs e)
@@ -53,5 +53,19 @@ namespace Sri_Mobiles.User
         {
             Response.Redirect("~/User/Contact.aspx");
         }
+        private void LoadCartCount()
+        {
+            if (Session["cart"] != null)
+            {
+                List<int> cart = (List<int>)Session["cart"];
+                lblCartCount.Text = cart.Count.ToString();
+                lblCartCount.Visible = cart.Count > 0;
+            }
+            else
+            {
+                lblCartCount.Visible = false;
+            }
+        }
+
     }
 }

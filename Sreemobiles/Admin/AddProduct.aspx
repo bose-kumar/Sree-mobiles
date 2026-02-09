@@ -147,20 +147,50 @@ letter-spacing: .5px;*/
                 <i class="fa fa-image text-warning"></i> Images
             </div>
 
-            <div class="row g-2">
-                <div class="col-12">
-                    <asp:FileUpload ID="fuMain" runat="server" CssClass="form-control" />
-                </div>
-                <div class="col-md-3"><asp:FileUpload runat="server" CssClass="form-control" /></div>
-                <div class="col-md-3"><asp:FileUpload runat="server" CssClass="form-control" /></div>
-                <div class="col-md-3"><asp:FileUpload runat="server" CssClass="form-control" /></div>
-                <div class="col-md-3"><asp:FileUpload runat="server" CssClass="form-control" /></div>
-            </div>
+           <div class="row g-2">
+
+    <!-- Image 1 -->
+    <div class="col-md-3">
+        <asp:FileUpload ID="fuImg1" runat="server" CssClass="form-control" />
+        <asp:Image ID="img1" runat="server" Width="80" CssClass="mt-1" />
+        <asp:HiddenField ID="hfImg1" runat="server" />
+    </div>
+
+    <!-- Image 2 -->
+    <div class="col-md-3">
+        <asp:FileUpload ID="fuImg2" runat="server" CssClass="form-control" />
+        <asp:Image ID="img2" runat="server" Width="80" CssClass="mt-1" />
+        <asp:HiddenField ID="hfImg2" runat="server" />
+    </div>
+
+    <!-- Image 3 -->
+    <div class="col-md-3">
+        <asp:FileUpload ID="fuImg3" runat="server" CssClass="form-control" />
+        <asp:Image ID="img3" runat="server" Width="80" CssClass="mt-1" />
+        <asp:HiddenField ID="hfImg3" runat="server" />
+    </div>
+
+    <!-- Image 4 -->
+    <div class="col-md-3">
+        <asp:FileUpload ID="fuImg4" runat="server" CssClass="form-control" />
+        <asp:Image ID="img4" runat="server" Width="80" CssClass="mt-1" />
+        <asp:HiddenField ID="hfImg4" runat="server" />
+    </div>
+
+    <!-- Image 5 -->
+    <div class="col-md-3 mt-2">
+        <asp:FileUpload ID="fuImg5" runat="server" CssClass="form-control" />
+        <asp:Image ID="img5" runat="server" Width="80" CssClass="mt-1" />
+        <asp:HiddenField ID="hfImg5" runat="server" />
+    </div>
+
+</div>
+
 
             <!-- ACTION -->
             <div class="text-end mt-3">
                 <asp:Button ID="btnSave" runat="server"
-                    Text="Save Product" CssClass="btn btn-warning" />
+                    Text="Save Product" CssClass="btn btn-warning" OnClick="btnSave_Click" />
             </div>
 
         </div>

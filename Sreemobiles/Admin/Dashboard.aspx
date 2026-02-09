@@ -223,6 +223,7 @@
             type: 'bar',
             data: {
                 labels: <%= MonthLabels %>,
+
             datasets: [{
                 data: <%= MonthData %>,
                 backgroundColor: '#2563eb'

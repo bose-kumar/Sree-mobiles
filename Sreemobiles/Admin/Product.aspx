@@ -17,32 +17,59 @@
     </div>
 
     <!-- SEARCH BAR (UI ONLY) -->
-    <div class="row mb-3">
-        <div class="col-md-4">
-            <input type="text"
-                   class="form-control"
-                   placeholder="Search product..." />
-        </div>
-    </div>
+   <asp:TextBox ID="txtSearch"
+    runat="server"
+    CssClass="form-control"
+    placeholder="Search product..."
+    AutoPostBack="true"
+    OnTextChanged="txtSearch_TextChanged" />
+
 
     <!-- PRODUCT TABLE -->
     <div class="card shadow-sm">
         <div class="card-body">
 
             <div class="table-responsive">
-                <asp:GridView runat="server"
-                    CssClass="table table-bordered table-hover align-middle"
-                    AutoGenerateColumns="false">
+             <asp:GridView ID="gvProducts" runat="server"
+    CssClass="table table-bordered table-hover align-middle"
+    AutoGenerateColumns="false"
+    DataKeyNames="ProductId"
+    OnRowCommand="gvProducts_RowCommand">
 
-                    <Columns>
-                        <asp:BoundField HeaderText="Product Name" />
-                        <asp:BoundField HeaderText="Brand" />
-                        <asp:BoundField HeaderText="Category" />
-                        <asp:BoundField HeaderText="Price (₹)" />
-                        <asp:BoundField HeaderText="Rating" />
-                    </Columns>
+    <Columns>
 
-                </asp:GridView>
+        <asp:BoundField DataField="ProductName" HeaderText="Product Name" />
+        <asp:BoundField DataField="Brand" HeaderText="Brand" />
+        <asp:BoundField DataField="Category" HeaderText="Category" />
+        <asp:BoundField DataField="Price" HeaderText="Price (₹)" />
+
+       
+        <asp:TemplateField HeaderText="Edit">
+            <ItemTemplate>
+                <asp:LinkButton
+                    runat="server"
+                    Text="Edit"
+                    CssClass="btn btn-sm btn-primary"
+                    CommandName="EditRow"
+                    CommandArgument='<%# Eval("ProductId") %>' />
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        <asp:TemplateField HeaderText="Delete">
+            <ItemTemplate>
+                <asp:LinkButton
+                    runat="server"
+                    Text="Delete"
+                    CssClass="btn btn-sm btn-danger"
+                    CommandName="DeleteRow"
+                    CommandArgument='<%# Eval("ProductId") %>' />
+            </ItemTemplate>
+        </asp:TemplateField>
+
+    </Columns>
+</asp:GridView>
+
+
             </div>
 
         </div>

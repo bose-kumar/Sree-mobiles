@@ -7,236 +7,182 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sri_Mobiles.User
+namespace Sreemobiles.User
 {
 
 
-    public partial class User
+    public partial class ViewDetails
     {
 
         /// <summary>
-        /// txtSearch control.
+        /// imgMain control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearch;
+        protected global::System.Web.UI.WebControls.Image imgMain;
 
         /// <summary>
-        /// btn_Home control.
+        /// imgT1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_Home;
+        protected global::System.Web.UI.WebControls.ImageButton imgT1;
 
         /// <summary>
-        /// btn_About control.
+        /// imgT2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_About;
+        protected global::System.Web.UI.WebControls.ImageButton imgT2;
 
         /// <summary>
-        /// btn_Products control.
+        /// imgT3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_Products;
+        protected global::System.Web.UI.WebControls.ImageButton imgT3;
 
         /// <summary>
-        /// btn_Contact control.
+        /// imgT4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_Contact;
+        protected global::System.Web.UI.WebControls.ImageButton imgT4;
 
         /// <summary>
-        /// lblCartCount control.
+        /// imgT5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCartCount;
+        protected global::System.Web.UI.WebControls.ImageButton imgT5;
 
         /// <summary>
-        /// MainContent control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Label lblName;
 
         /// <summary>
-        /// hlLocation control.
+        /// lblBrand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlLocation;
+        protected global::System.Web.UI.WebControls.Label lblBrand;
 
         /// <summary>
-        /// hlPhone1 control.
+        /// lblPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlPhone1;
+        protected global::System.Web.UI.WebControls.Label lblPrice;
 
         /// <summary>
-        /// hlPhone2 control.
+        /// lblDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlPhone2;
+        protected global::System.Web.UI.WebControls.Label lblDesc;
 
         /// <summary>
-        /// hlEmail control.
+        /// lblSpec control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlEmail;
+        protected global::System.Web.UI.WebControls.Label lblSpec;
 
         /// <summary>
-        /// hlFacebook control.
+        /// lblHBrand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlFacebook;
+        protected global::System.Web.UI.WebControls.Label lblHBrand;
 
         /// <summary>
-        /// hlInstagram control.
+        /// lblHCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlInstagram;
+        protected global::System.Web.UI.WebControls.Label lblHCategory;
 
         /// <summary>
-        /// hlTwitter control.
+        /// lblHQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlTwitter;
+        protected global::System.Web.UI.WebControls.Label lblHQty;
 
         /// <summary>
-        /// lnkMobiles control.
+        /// lblDName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkMobiles;
+        protected global::System.Web.UI.WebControls.Label lblDName;
 
         /// <summary>
-        /// lnkHeadphones control.
+        /// lblDBrand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkHeadphones;
+        protected global::System.Web.UI.WebControls.Label lblDBrand;
 
         /// <summary>
-        /// lnkTV control.
+        /// lblDCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkTV;
+        protected global::System.Web.UI.WebControls.Label lblDCategory;
 
         /// <summary>
-        /// lnkBattery control.
+        /// lblDPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkBattery;
+        protected global::System.Web.UI.WebControls.Label lblDPrice;
 
         /// <summary>
-        /// lnkScreen control.
+        /// lblDQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkScreen;
-
-        /// <summary>
-        /// lnkGlass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkGlass;
-
-        /// <summary>
-        /// lnkPouch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkPouch;
-
-        /// <summary>
-        /// btnFooterHome control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnFooterHome;
-
-        /// <summary>
-        /// btnFooterAbout control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnFooterAbout;
-
-        /// <summary>
-        /// btnFooterProducts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnFooterProducts;
-
-        /// <summary>
-        /// btnFooterContact control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnFooterContact;
+        protected global::System.Web.UI.WebControls.Label lblDQty;
     }
 }

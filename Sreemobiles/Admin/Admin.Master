@@ -180,6 +180,15 @@
     <i class="fa fa-store me-2"></i> Vendor
 </asp:LinkButton>
 
+
+                     <asp:LinkButton ID="btnuserhome" runat="server"
+    CssClass="btn"
+    OnClick="btnuserhome_Click">
+    <i class="fa-solid fa-house-user me-2"></i> UserHome
+
+</asp:LinkButton>
+
+
     </div>
 
     <!-- LOGOUT -->

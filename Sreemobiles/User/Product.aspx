@@ -1,13 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/User.Master" AutoEventWireup="true" CodeBehind="Product.aspx.cs" Inherits="Sri_Mobiles.User.Product" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <style>
-        body {
-     font-family: 'Poppins', sans-serif;
- background: #f8fafc;
- color: #111827;
-}
-    /* FILTER */
+  
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f8fafc;
+        color: #111827;
+    }
+
     .filter-box {
         border: 1px solid #e5e5e5;
         padding: 20px;
@@ -37,7 +40,6 @@
         color: #f7d042;
     }
 
-    /* PRODUCT CARD */
     .product-card {
         background: #ffffff;
         border-radius: 16px;
@@ -76,50 +78,13 @@
         margin-top: 6px;
     }
 
-    .stars i {
-        color: #facc15;
-        font-size: 14px;
-    }
-
-    /* RESPONSIVE */
     @media (max-width: 991px) {
         .filter-box {
             margin-bottom: 20px;
         }
     }
-
-    @media (max-width: 768px) {
-        .filter-box ul {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .filter-box li {
-            width: 48%;
-            background: #f9fafb;
-            border-radius: 8px;
-            text-align: center;
-            padding: 8px 0;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .filter-box li {
-            width: 100%;
-        }
-
-        .product-body h6 {
-            font-size: 14px;
-        }
-
-        .product-body p {
-            font-size: 13px;
-        }
-    }
 </style>
 
-<!-- ================= PRODUCTS ================= -->
 <section class="container pb-5">
     <div class="row">
 
@@ -130,7 +95,7 @@
                 <ul>
                     <li class="active" onclick="setCategory('all', this)">All</li>
                     <li onclick="setCategory('mobile', this)">Mobiles</li>
-                    <li onclick="setCategory('accessory', this)">Accessories</li>
+                    <li onclick="setCategory('accessories', this)">Accessories</li>
                     <li onclick="setCategory('tv', this)">LED TVs</li>
                 </ul>
             </div>
@@ -140,62 +105,104 @@
         <div class="col-md-9">
             <div class="row g-4" id="product-list">
 
-                <!-- PRODUCT 1 -->
-                <div class="col-md-4 col-sm-6 product-card-wrapper" data-category="mobile">
-                    <div class="product-card">
-                        <img src="../Images/Mobile phones.png" class="img-fluid" alt="Mobile" />
-                        <div class="product-body">
-                            <h6>Samsung Smartphone</h6>
-                            <p>64GB, 6GB RAM</p>
+                <asp:Repeater ID="rptProducts" runat="server"
+                    OnItemCommand="rptProducts_ItemCommand">
 
-                            <div class="stars">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-alt"></i>
+                    <ItemTemplate>
+
+                        <!-- IMPORTANT : data-category added -->
+                        <div class="col-md-4 col-sm-6 product-card-wrapper"
+                             data-category='<%# Eval("Category").ToString().ToLower() %>'>
+
+                            <div class="product-card">
+
+                                <div class="text-center p-2">
+
+                                    <!-- main image -->
+                                    <img src='<%# "../ProductImages/" + Eval("Image1") %>'
+                                         class="img-fluid mb-2"
+                                         style="height:180px;object-fit:contain;" />
+
+                                    <!-- thumbnails -->
+                                    <div class="d-flex justify-content-center gap-1">
+
+                                       
+                                   
+
+                                    </div>
+
+                                </div>
+
+                                <div class="product-body">
+
+                                    <h6>
+                                        <a href='ViewDetails.aspx?id=<%# Eval("ProductId") %>'>
+                                            <%# Eval("ProductName") %>
+                                        </a>
+                                    </h6>
+
+                                    <p><%# Eval("Brand") %></p>
+
+                                    <span class="price">
+                                        ₹ <%# Eval("Price") %>
+                                    </span>
+
+                                    <asp:Button
+                                        runat="server"
+                                        Text="View Details"
+                                        CssClass="btn btn-outline-dark btn-sm w-100 mt-2"
+                                        CommandName="view"
+                                        CommandArgument='<%# Eval("ProductId") %>' />
+
+                                    <asp:Button
+                                        runat="server"
+                                        Text="Add to Cart"
+                                        CssClass="btn btn-warning btn-sm w-100 mt-2"
+                                        CommandName="addcart"
+                                        CommandArgument='<%# Eval("ProductId") %>' />
+
+                                </div>
+
                             </div>
-
-                            <span class="price">₹12,999</span>
-
-                            <asp:Button ID="btnAdd1"
-                                runat="server"
-                                CssClass="btn btn-warning btn-sm w-100 mt-2"
-                                Text="Add to Cart" />
                         </div>
-                    </div>
-                </div>
 
-                <!-- PRODUCT 2 -->
-                <div class="col-md-4 col-sm-6 product-card-wrapper" data-category="accessory">
-                    <div class="product-card">
-                        <img src="../Images/mainAcessories.png" class="img-fluid" alt="Accessory" />
-                        <div class="product-body">
-                            <h6>Bluetooth Headset</h6>
-                            <p>Noise Cancellation</p>
+                    </ItemTemplate>
 
-                            <div class="stars">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-
-                            <span class="price">₹1,299</span>
-
-                            <asp:Button ID="btnAdd2"
-                                runat="server"
-                                CssClass="btn btn-warning btn-sm w-100 mt-2"
-                                Text="Add to Cart" />
-                        </div>
-                    </div>
-                </div>
+                </asp:Repeater>
 
             </div>
         </div>
 
     </div>
 </section>
+
+<!-- CATEGORY FILTER SCRIPT -->
+<script>
+    function setCategory(cat, el) {
+
+        var items = document.getElementsByClassName("product-card-wrapper");
+
+        for (var i = 0; i < items.length; i++) {
+
+            var itemCat = items[i].getAttribute("data-category");
+
+            if (cat === "all" || itemCat === cat) {
+                items[i].style.display = "block";
+            }
+            else {
+                items[i].style.display = "none";
+            }
+        }
+
+        var lis = el.parentNode.getElementsByTagName("li");
+
+        for (var j = 0; j < lis.length; j++) {
+            lis[j].classList.remove("active");
+        }
+
+        el.classList.add("active");
+    }
+</script>
+
 </asp:Content>
 
