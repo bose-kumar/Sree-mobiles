@@ -222,10 +222,10 @@
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: <%= MonthLabels %>,
+                labels: <%= MonthLabels %> ,
 
             datasets: [{
-                data: <%= MonthData %>,
+                data: <%= MonthData %> ,
                 backgroundColor: '#2563eb'
             }]
         },

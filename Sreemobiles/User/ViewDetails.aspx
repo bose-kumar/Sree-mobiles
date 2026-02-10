@@ -1,101 +1,204 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/User.Master" AutoEventWireup="true" CodeBehind="ViewDetails.aspx.cs" Inherits="Sreemobiles.User.ViewDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-   
-
-
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 <style>
-    .pd-wrap{
-        background:#fff;
-        padding:25px;
-        border-radius:14px;
-        box-shadow:0 8px 20px rgba(0,0,0,.06);
-    }
+body{
+    background:#faf7f2;
+}
 
-    .pd-left{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-    }
+.pd-wrap{
+    background:#ffffff;
+    padding:28px;
+    border-radius:18px;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+    position:relative;
+}
 
-    .pd-main-img{
-        width:100%;
-        max-width:320px;
-        height:320px;
-        object-fit:contain;
-        border:1px solid #eee;
-        border-radius:10px;
-        background:#fafafa;
-        padding:10px;
-    }
-
-    .pd-thumbs{
-        display:flex;
-        gap:8px;
-        margin-top:12px;
-        justify-content:center;
-    }
-
-   .pd-thumbs input[type=image]{
-    width:55px;
-    height:55px;
-    object-fit:contain;
-    border:1px solid #ddd;
-    border-radius:6px;
-    padding:4px;
-    background:#fff;
+/* close button */
+.pd-close{
+    position:absolute;
+    top:14px;
+    right:14px;
+    background:#f3f4f6;
+    border:none;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    font-size:18px;
     cursor:pointer;
 }
 
-    }
+.pd-close:hover{
+    background:#e5e7eb;
+}
 
-    .pd-right{
-        display:flex;
-        flex-direction:column;
-    }
+/* LEFT IMAGE PART */
 
-    .pd-title{
-        font-size:24px;
-        font-weight:700;
-        margin-bottom:4px;
-    }
+.pd-left{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
 
-    .pd-brand{
-        color:#6b7280;
-        font-size:14px;
-        margin-bottom:8px;
-    }
+.pd-main-img{
+    width:100%;
+    max-width:340px;
+    height:340px;
+    object-fit:contain;
+    background:#f6f6f6;
+    border-radius:16px;
+    padding:14px;
+    border:none;
+}
 
-    .pd-price{
-        font-size:26px;
-        font-weight:700;
-        color:#16a34a;
-        margin-bottom:12px;
-    }
+/* Thumbnails */
 
-    .pd-actions{
-        display:flex;
-        gap:10px;
-        margin-bottom:12px;
-    }
+.pd-thumbs{
+    display:flex;
+    gap:10px;
+    margin-top:14px;
+    justify-content:center;
+}
 
-    .sec-title{
-        font-weight:600;
-        margin-top:14px;
-        margin-bottom:6px;
-    }
+.pd-thumbs input[type=image]{
+    width:60px;
+    height:60px;
+    object-fit:contain;
+    border-radius:10px;
+    padding:6px;
+    background:#fff;
+    border:1px solid #eee;
+    cursor:pointer;
+    transition:.2s;
+}
 
-    .pd-desc,
-    .pd-spec{
-        font-size:14px;
-        line-height:1.6;
-    }
+.pd-thumbs input[type=image]:hover{
+    transform:scale(1.05);
+    border-color:#ffc107;
+}
 
-    ul{padding-left:18px}
-    table th{background:#f9fafb}
+/* RIGHT CONTENT */
+
+.pd-right{
+    display:flex;
+    flex-direction:column;
+}
+
+/* Title */
+
+.pd-title{
+    font-size:26px;
+    font-weight:800;
+    color:#1f2937;
+    margin-bottom:4px;
+}
+
+/* Brand */
+
+.pd-brand{
+    color:#6b7280;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+/* Price */
+
+.pd-price{
+    font-size:28px;
+    font-weight:800;
+    color:#16a34a;
+    margin-bottom:14px;
+}
+
+/* Buttons */
+
+.pd-actions{
+    display:flex;
+    gap:12px;
+    margin-bottom:16px;
+}
+
+.pd-actions .btn-warning{
+    background:#ffc107;
+    border:none;
+    font-weight:700;
+    border-radius:12px;
+}
+
+.pd-actions .btn-dark{
+    border-radius:12px;
+    font-weight:700;
+}
+
+/* Section titles */
+
+.sec-title{
+    font-weight:700;
+    font-size:15px;
+    color:#111827;
+    margin-top:18px;
+    margin-bottom:6px;
+}
+
+/* Description & spec */
+
+.pd-desc,
+.pd-spec{
+    font-size:14px;
+    line-height:1.7;
+    color:#374151;
+}
+
+/* Highlights card style */
+
+.pd-right ul{
+    padding-left:18px;
+    background:#fafafa;
+    border-radius:12px;
+    padding:12px 16px;
+    margin-bottom:0;
+}
+
+.pd-right ul li{
+    margin-bottom:6px;
+    font-size:14px;
+}
+
+/* Product details table */
+
+table{
+    border-radius:12px;
+    overflow:hidden;
+}
+
+table th{
+    background:#fff7e6;
+    font-weight:700;
+    font-size:14px;
+}
+
+table td{
+    font-size:14px;
+}
+
+/* Divider */
+
+hr{
+    margin:18px 0;
+    border-top:1px solid #eee;
+}
 </style>
 
 <div class="container mt-4 mb-5">
     <div class="pd-wrap">
+
+        <!-- CLOSE BUTTON -->
+        <asp:LinkButton ID="btnClose" runat="server"
+            CssClass="pd-close"
+            ToolTip="Close"
+            OnClick="btnClose_Click">
+            <i class="fa fa-times"></i>
+        </asp:LinkButton>
 
         <div class="row g-4">
 
@@ -131,9 +234,12 @@
 
                 <div class="pd-actions">
                     <asp:Button runat="server" Text="Add to Cart"
-                        CssClass="btn btn-warning px-4" />
+                        CssClass="btn btn-warning px-4"
+                        OnClick="btnAddToCart_Click" />
+
                     <asp:Button runat="server" Text="Buy Now"
-                        CssClass="btn btn-dark px-4" />
+                        CssClass="btn btn-dark px-4"
+                        OnClick="btnBuyNow_Click" />
                 </div>
 
                 <hr />
@@ -146,7 +252,6 @@
 
                 <hr />
 
-                <!-- Highlights -->
                 <div class="row">
 
                     <div class="col-md-6">
@@ -174,7 +279,6 @@
 
                 <hr />
 
-                <!-- Product details table -->
                 <div class="sec-title">Product Details</div>
 
                 <table class="table table-sm table-bordered">
@@ -208,3 +312,4 @@
 </div>
 
 </asp:Content>
+

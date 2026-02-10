@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -18,11 +19,16 @@ namespace Sreemobiles.User
                 if (Request.QueryString["id"] != null)
                 {
                     int id = Convert.ToInt32(Request.QueryString["id"]);
+                    AddToRecentlyViewed(id);
+
                     LoadProduct(id);
                 }
             }
         }
-
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/User/Product.aspx");
+        }
         private void LoadProduct(int id)
         {
             string cs = ConfigurationManager
@@ -97,5 +103,59 @@ namespace Sreemobiles.User
             ImageButton btn = (ImageButton)sender;
             imgMain.ImageUrl = btn.CommandArgument;
         }
+        protected void btnAddToCart_Click(object sender, EventArgs e)
+        {
+            AddCurrentProductToCart();
+        }
+
+        protected void btnBuyNow_Click(object sender, EventArgs e)
+        {
+            AddCurrentProductToCart();
+        }
+
+        private void AddCurrentProductToCart()
+        {
+            if (Request.QueryString["id"] == null)
+                return;
+
+            int pid = Convert.ToInt32(Request.QueryString["id"]);
+
+            List<int> cart;
+
+            if (Session["cart"] == null)
+                cart = new List<int>();
+            else
+                cart = (List<int>)Session["cart"];
+
+            cart.Add(pid);
+
+            Session["cart"] = cart;
+
+            Response.Redirect("CartPage.aspx");
+        }
+      
+        private void AddToRecentlyViewed(int pid)
+        {
+            List<int> recent;
+
+            if (Session["recent"] == null)
+                recent = new List<int>();
+            else
+                recent = (List<int>)Session["recent"];
+
+            // already irundha remove pannum
+            recent.Remove(pid);
+
+            // top-la add pannum
+            recent.Insert(0, pid);
+
+            // max 10 items maintain pannrom
+            if (recent.Count > 10)
+                recent = recent.Take(10).ToList();
+
+            Session["recent"] = recent;
+        }
+
+       
     }
 }

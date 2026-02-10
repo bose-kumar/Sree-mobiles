@@ -15,30 +15,21 @@ namespace Sreemobiles.User
     {
 
         /// <summary>
-        /// gvCart control.
+        /// rptCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCart;
+        protected global::System.Web.UI.WebControls.Repeater rptCart;
 
         /// <summary>
-        /// lblTotalQty control.
+        /// lblGrandTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalQty;
-
-        /// <summary>
-        /// lblTotal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotal;
+        protected global::System.Web.UI.WebControls.Label lblGrandTotal;
     }
 }

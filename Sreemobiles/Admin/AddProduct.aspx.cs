@@ -54,7 +54,11 @@ namespace Sri_Mobiles.Admin
                     txtSpec.Text,
                     img1, img2, img3, img4, img5
                 );
-                
+                // ✅ Save message
+                ClientScript.RegisterStartupScript(this.GetType(),
+                    "msg",
+                    "alert('Product added successfully');",
+                    true);
             }
             else
             {
@@ -70,7 +74,12 @@ namespace Sri_Mobiles.Admin
                     txtSpec.Text,
                     img1, img2, img3, img4, img5
                 );
-                
+                // ✅ Edit message
+                ClientScript.RegisterStartupScript(this.GetType(),
+                    "msg",
+                    "alert('Product updated successfully');",
+                    true);
+
             }
 
             ClearForm();
@@ -132,7 +141,7 @@ namespace Sri_Mobiles.Admin
                 hfImg1.Value = dt.Rows[0]["Image1"].ToString();
                 hfImg2.Value = dt.Rows[0]["Image2"].ToString();
                 hfImg3.Value = dt.Rows[0]["Image3"].ToString();
-                hfImg4.Value = dt.Rows[0]["Image4"].ToString();
+                hfImg4.Value = dt.Rows[0]["Image4"].ToString();   
                 hfImg5.Value = dt.Rows[0]["Image5"].ToString();
 
                 if (hfImg1.Value != "")

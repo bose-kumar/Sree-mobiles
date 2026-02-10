@@ -42,7 +42,10 @@ namespace Sri_Mobiles.Admin
             {
                 ProductDAL dal = new ProductDAL();
                 dal.DeleteProduct(pid);
-
+                ClientScript.RegisterStartupScript(this.GetType(),
+       "msg",
+       "alert('Product deleted successfully');",
+       true);
                 LoadProducts(); // refresh grid
             }
         }
