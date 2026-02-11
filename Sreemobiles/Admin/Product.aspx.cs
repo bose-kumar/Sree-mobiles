@@ -40,15 +40,28 @@ namespace Sri_Mobiles.Admin
 
             if (e.CommandName == "DeleteRow")
             {
-                ProductDAL dal = new ProductDAL();
-                dal.DeleteProduct(pid);
-                ClientScript.RegisterStartupScript(this.GetType(),
-       "msg",
-       "alert('Product deleted successfully');",
-       true);
-                LoadProducts(); // refresh grid
+                try
+                {
+                    ProductDAL dal = new ProductDAL();
+                    dal.DeleteProduct(pid);
+
+                    ScriptManager.RegisterStartupScript(this, GetType(),
+                        "tdel",
+                        "showAdminToast('Product deleted successfully','success');",
+                        true);
+
+                    LoadProducts(); // refresh grid
+                }
+                catch (Exception)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(),
+                        "terr",
+                        "showAdminToast('Unable to delete product','error');",
+                        true);
+                }
             }
         }
+
         protected void txtSearch_TextChanged(object sender, EventArgs e)
         {
             ProductDAL dal = new ProductDAL();

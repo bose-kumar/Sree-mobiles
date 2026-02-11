@@ -20,8 +20,16 @@ namespace Sri_Mobiles.User
                     BindRecentlyViewed();
                 }
             }
+        protected void rptRecent_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "view")
+            {
+                int pid = Convert.ToInt32(e.CommandArgument);
+                Response.Redirect("ViewDetails.aspx?id=" + pid);
+            }
+        }
 
-            private void BindRecentlyViewed()
+        private void BindRecentlyViewed()
             {
                 ProductDAL dal = new ProductDAL();
 

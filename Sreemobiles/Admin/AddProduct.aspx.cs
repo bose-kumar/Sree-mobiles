@@ -27,88 +27,114 @@ namespace Sri_Mobiles.Admin
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            string img1 = hfImg1.Value;
-            string img2 = hfImg2.Value;
-            string img3 = hfImg3.Value;
-            string img4 = hfImg4.Value;
-            string img5 = hfImg5.Value;
-
-            SaveImage(fuImg1, ref img1);
-            SaveImage(fuImg2, ref img2);
-            SaveImage(fuImg3, ref img3);
-            SaveImage(fuImg4, ref img4);
-            SaveImage(fuImg5, ref img5);
-
-            ProductDAL dal = new ProductDAL();
-
-            if (txtProductID.Text == "")
+            try
             {
-                // INSERT
-                dal.InsertProduct(
-                    txtProductName.Text,
-                    txtBrand.Text,
-                    ddlCategory.SelectedValue,
-                    Convert.ToDecimal(txtPrice.Text),
-                    Convert.ToInt32(txtQty.Text),
-                    txtDesc.Text,
-                    txtSpec.Text,
-                    img1, img2, img3, img4, img5
-                );
-                // ✅ Save message
-                ClientScript.RegisterStartupScript(this.GetType(),
-                    "msg",
-                    "alert('Product added successfully');",
+
+
+                string err;
+
+                if (!ValidateImage(fuImg1, 1024, out err) ||
+                    !ValidateImage(fuImg2, 1024, out err) ||
+                    !ValidateImage(fuImg3, 1024, out err) ||
+                    !ValidateImage(fuImg4, 1024, out err) ||
+                    !ValidateImage(fuImg5, 1024, out err))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(),
+                        "imgerr", "alert('" + err + "');", true);
+                    return;
+                }
+
+                string img1 = hfImg1.Value;
+                string img2 = hfImg2.Value;
+                string img3 = hfImg3.Value;
+                string img4 = hfImg4.Value;
+                string img5 = hfImg5.Value;
+
+                SaveImage(fuImg1, ref img1);
+                SaveImage(fuImg2, ref img2);
+                SaveImage(fuImg3, ref img3);
+                SaveImage(fuImg4, ref img4);
+                SaveImage(fuImg5, ref img5);
+
+                ProductDAL dal = new ProductDAL();
+
+                if (txtProductID.Text == "")
+                {
+                    // INSERT
+                    dal.InsertProduct(
+                        txtProductName.Text,
+                        txtBrand.Text,
+                        ddlCategory.SelectedValue,
+                        Convert.ToDecimal(txtPrice.Text),
+                        Convert.ToInt32(txtQty.Text),
+                        txtDesc.Text,
+                        txtSpec.Text,
+                        img1, img2, img3, img4, img5
+                    );
+                    // ✅ Save message
+                    ScriptManager.RegisterStartupScript(this, GetType(), "t1",
+        "showAdminToast('Product added successfully','success');" +
+        "setTimeout(function(){ window.location='Product.aspx'; },1500);",
+        true);
+                }
+                else
+                {
+                    // UPDATE
+                    dal.UpdateProduct(
+                        Convert.ToInt32(txtProductID.Text),
+                        txtProductName.Text,
+                        txtBrand.Text,
+                        ddlCategory.SelectedValue,
+                        Convert.ToDecimal(txtPrice.Text),
+                        Convert.ToInt32(txtQty.Text),
+                        txtDesc.Text,
+                        txtSpec.Text,
+                        img1, img2, img3, img4, img5
+                    );
+                    // ✅ Edit message
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "t2",
+        "showAdminToast('Product updated successfully','success');" +
+        "setTimeout(function(){ window.location='Product.aspx'; },1500);",
+        true);
+
+                }
+
+            }
+            catch (Exception )
+            {
+                
+                ScriptManager.RegisterStartupScript(this, GetType(), "terr",
+                    "showAdminToast('Error while saving product. Please try again.','error');",
                     true);
             }
-            else
-            {
-                // UPDATE
-                dal.UpdateProduct(
-                    Convert.ToInt32(txtProductID.Text),
-                    txtProductName.Text,
-                    txtBrand.Text,
-                    ddlCategory.SelectedValue,
-                    Convert.ToDecimal(txtPrice.Text),
-                    Convert.ToInt32(txtQty.Text),
-                    txtDesc.Text,
-                    txtSpec.Text,
-                    img1, img2, img3, img4, img5
-                );
-                // ✅ Edit message
-                ClientScript.RegisterStartupScript(this.GetType(),
-                    "msg",
-                    "alert('Product updated successfully');",
-                    true);
-
-            }
-
-            ClearForm();
-
         }
 
-        private void ClearForm()
-        {
-            txtProductID.Text = "";
-            txtProductName.Text = "";
-            txtBrand.Text = "";
-            ddlCategory.SelectedIndex = 0;
-            txtPrice.Text = "";
-            txtQty.Text = "";
-            txtDesc.Text = "";
-            txtSpec.Text = "";
 
-            hfImg1.Value = "";
-            hfImg2.Value = "";
-            hfImg3.Value = "";
-            hfImg4.Value = "";
-            hfImg5.Value = "";
 
-            img1.ImageUrl = "";
-            img2.ImageUrl = "";
-            img3.ImageUrl = "";
-            img4.ImageUrl = "";
-            img5.ImageUrl = "";
-        }
+        //private void ClearForm()
+        //{
+        //    txtProductID.Text = "";
+        //    txtProductName.Text = "";
+        //    txtBrand.Text = "";
+        //    ddlCategory.SelectedIndex = 0;
+        //    txtPrice.Text = "";
+        //    txtQty.Text = "";
+        //    txtDesc.Text = "";
+        //    txtSpec.Text = "";
+
+        //    hfImg1.Value = "";
+        //    hfImg2.Value = "";
+        //    hfImg3.Value = "";
+        //    hfImg4.Value = "";
+        //    hfImg5.Value = "";
+
+        //    img1.ImageUrl = "";
+        //    img2.ImageUrl = "";
+        //    img3.ImageUrl = "";
+        //    img4.ImageUrl = "";
+        //    img5.ImageUrl = "";
+        //}
         private void SaveImage(FileUpload fu, ref string fileName)
         {
             if (fu.HasFile)
@@ -161,6 +187,35 @@ namespace Sri_Mobiles.Admin
 
             }
         }
+
+        private bool ValidateImage(FileUpload fu, int maxKB, out string errorMsg)
+        {
+            errorMsg = "";
+
+            if (!fu.HasFile)
+                return true;   // image select pannala na OK (edit time)
+
+            string ext = System.IO.Path.GetExtension(fu.FileName).ToLower();
+
+            string[] allowed = { ".jpg", ".jpeg", ".png", ".webp" };
+
+            if (!allowed.Contains(ext))
+            {
+                errorMsg = "Only JPG, JPEG, PNG, WEBP images allowed.";
+                return false;
+            }
+
+            int fileSizeKB = fu.PostedFile.ContentLength / 1024;
+
+            if (fileSizeKB > maxKB)
+            {
+                errorMsg = "Image size must be less than " + maxKB + " KB.";
+                return false;
+            }
+
+            return true;
+        }
+
 
 
     }

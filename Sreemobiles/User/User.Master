@@ -64,11 +64,11 @@
         }
 
         .search-box {
-            width: 100%;
-            padding: 12px 22px;
-            border: 3px #f7c600;
+            padding: 10px 14px;
             font-size: 15px;
+            border: 1px solid #f7c600;
         }
+
 
             .search-box:focus {
                 outline: none;
@@ -283,11 +283,24 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navMenu">
 
                     <!-- SEARCH -->
-                    <div class="nav-search-center">
-                        <asp:TextBox ID="txtSearch" runat="server"
-                            CssClass="form-control search-box"
-                            placeholder="Search products..." />
+                    <div class="nav-search-center" runat="server" id="searchBoxArea">
+
+                        <div class="input-group">
+
+                            <asp:TextBox ID="txtSearch" runat="server"
+                                CssClass="form-control search-box"
+                                placeholder="Search products..." />
+
+                            <asp:LinkButton ID="btnSearch" runat="server"
+                                CssClass="btn btn-warning"
+                                OnClick="btnSearch_Click">
+            <i class="fa fa-search"></i>
+                            </asp:LinkButton>
+
+                        </div>
+
                     </div>
+
 
                     <!-- MENU BUTTONS -->
                     <ul class="navbar-nav nav-btn-group">
@@ -306,13 +319,13 @@
                     </ul>
 
                     <!-- ICONS -->
-            <a href="CartPage.aspx" class="position-relative text-dark fs-5 me-3">
-    <i class="fa fa-shopping-cart"></i>
+                    <a href="CartPage.aspx" class="position-relative text-dark fs-5 me-3">
+                        <i class="fa fa-shopping-cart"></i>
 
-    <asp:Label ID="lblCartCount" runat="server"
-        CssClass="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-    </asp:Label>
-</a>
+                        <asp:Label ID="lblCartCount" runat="server"
+                            CssClass="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        </asp:Label>
+                    </a>
 
 
 

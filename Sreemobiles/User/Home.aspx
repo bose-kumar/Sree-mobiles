@@ -120,34 +120,42 @@
         <h2 class="text-center mb-4">Our Categories</h2>
 
         <div class="row g-4 text-center">
-
             <div class="col-6 col-md-3">
-                <div class="product-box">
-                    <i class="fa fa-mobile-screen"></i>
-                    <h5>Mobiles</h5>
-                </div>
-            </div>
+    <a href="Product.aspx?cat=mobile" class="text-decoration-none text-dark">
+        <div class="product-box">
+            <i class="fa fa-mobile-screen"></i>
+            <h5>Mobiles</h5>
+        </div>
+    </a>
+</div>
 
-            <div class="col-6 col-md-3">
-                <div class="product-box">
-                    <i class="fa fa-headphones"></i>
-                    <h5>Headphones</h5>
-                </div>
-            </div>
+<div class="col-6 col-md-3">
+    <a href="Product.aspx?cat=accessories" class="text-decoration-none text-dark">
+        <div class="product-box">
+            <i class="fa fa-headphones"></i>
+            <h5>Headphones</h5>
+        </div>
+    </a>
+</div>
 
-            <div class="col-6 col-md-3">
-                <div class="product-box">
-                    <i class="fa fa-tv"></i>
-                    <h5>LED TVs</h5>
-                </div>
-            </div>
+<div class="col-6 col-md-3">
+    <a href="Product.aspx?cat=tv" class="text-decoration-none text-dark">
+        <div class="product-box">
+            <i class="fa fa-tv"></i>
+            <h5>LED TVs</h5>
+        </div>
+    </a>
+</div>
 
-            <div class="col-6 col-md-3">
-                <div class="product-box">
-                    <i class="fa fa-plug"></i>
-                    <h5>Accessories</h5>
-                </div>
-            </div>
+<div class="col-6 col-md-3">
+    <a href="Product.aspx?cat=accessories" class="text-decoration-none text-dark">
+        <div class="product-box">
+            <i class="fa fa-plug"></i>
+            <h5>Accessories</h5>
+        </div>
+    </a>
+</div>
+
 
         </div>
     </section>
@@ -165,7 +173,9 @@
 
     <div class="row g-3">
 
-        <asp:Repeater ID="rptRecent" runat="server">
+    <asp:Repeater ID="rptRecent" runat="server"
+    OnItemCommand="rptRecent_ItemCommand">
+
 
             <ItemTemplate>
 

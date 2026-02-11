@@ -2,7 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminContent" runat="server">
     
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-
+ <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
     body {
         background: #f4f6fb;
@@ -214,27 +215,35 @@
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <script type="text/javascript">
+window.onload = function() {
 
-<script>
-    window.onload = function () {
-        var ctx = document.getElementById('orderChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: <%= MonthLabels %> ,
+    var canvas = document.getElementById('orderChart');
 
+    if (!canvas) return;
+
+    var ctx = canvas.getContext('2d');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <%= MonthLabels %>,
             datasets: [{
-                data: <%= MonthData %> ,
+                label: 'Orders',
+                data: <%= MonthData %>,
                 backgroundColor: '#2563eb'
             }]
         },
         options: {
             responsive: true,
-            plugins: { legend: { display: false } }
+            plugins: {
+                legend: { display: false }
+            }
         }
     });
-    };
-</script>
+};
+ </script>
+
+
 
 </asp:Content>

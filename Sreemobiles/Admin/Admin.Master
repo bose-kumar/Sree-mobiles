@@ -133,7 +133,9 @@
 </head>
 
 <body>
-<form runat="server">
+<form runat="server" enctype="multipart/form-data">
+
+    <asp:ScriptManager ID="ScriptManager1" runat="server" />
 
 <!-- ========== SIDEBAR ========== -->
 <div class="sidebar">
@@ -206,9 +208,55 @@
 <div class="content-area">
     <asp:ContentPlaceHolder ID="AdminContent" runat="server" />
 </div>
+    <!-- TOAST CONTAINER -->
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index:9999">
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <div id="adminToast" class="toast align-items-center border-0" role="alert">
+
+        <div class="d-flex">
+            <div class="toast-body" id="adminToastMsg"></div>
+
+            <button type="button"
+                class="btn-close me-2 m-auto"
+                data-bs-dismiss="toast"></button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+<script>
+    function showAdminToast(msg, type) {
+
+    var toastEl = document.getElementById("adminToast");
+    var toastMsg = document.getElementById("adminToastMsg");
+
+    if (!toastEl || !toastMsg) return;
+
+    toastMsg.innerText = msg;
+
+    toastEl.classList.remove("text-bg-success", "text-bg-danger", "text-bg-warning");
+
+    if (type === "success")
+        toastEl.classList.add("text-bg-success");
+    else if (type === "error")
+        toastEl.classList.add("text-bg-danger");
+    else
+        toastEl.classList.add("text-bg-warning");
+
+    var toast = new bootstrap.Toast(toastEl, { delay: 1500 });
+    toast.show();
+}
+</script>
 
 </form>
+    <!-- Bootstrap (for bootstrap error) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

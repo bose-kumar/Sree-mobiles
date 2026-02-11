@@ -21,9 +21,21 @@ namespace Sri_Mobiles.User
 
         private void BindProducts()
         {
-            ProductDAL dal = new ProductDAL();
-            rptProducts.DataSource = dal.GetProductsForUser();
-            rptProducts.DataBind();
+            {
+                ProductDAL dal = new ProductDAL();
+
+                if (Request.QueryString["search"] != null)
+                {
+                    string key = Request.QueryString["search"].ToString();
+                    rptProducts.DataSource = dal.SearchProducts(key);
+                }
+                else
+                {
+                    rptProducts.DataSource = dal.GetProductsForUser();
+                }
+
+                rptProducts.DataBind();
+            }
         }
 
         protected void rptProducts_ItemCommand(object source, RepeaterCommandEventArgs e)

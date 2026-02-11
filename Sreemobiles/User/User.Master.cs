@@ -11,8 +11,31 @@ namespace Sri_Mobiles.User
     {
              protected void Page_Load(object sender, EventArgs e)
         {
+            string page = System.IO.Path.GetFileName(Request.Path).ToLower();
+
+            // show search only in these pages
+            if (page == "home.aspx"  || page == "product.aspx")
+            {
+                searchBoxArea.Visible = true;
+            }
+            else
+            {
+                searchBoxArea.Visible = false;
+            }
+
+            
             LoadCartCount();
         }
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string key = txtSearch.Text.Trim();
+
+            if (!string.IsNullOrEmpty(key))
+            {
+                Response.Redirect("Product.aspx?search=" + Server.UrlEncode(key));
+            }
+        }
+
 
         protected void btn_Home_Click(object sender, EventArgs e)
         {
