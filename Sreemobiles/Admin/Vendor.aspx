@@ -133,6 +133,8 @@
     </div>
    <%--grid chnages--%>
     <!-- GRID CARD -->
+    <asp:HiddenField ID="hfRowId" runat="server" />
+
     <div class="card form-card mt-3">
         <div class="card-body">
 
@@ -143,7 +145,8 @@
             <asp:GridView ID="gvVendors" runat="server"
                 AutoGenerateColumns="False"
                 CssClass="table table-bordered table-hover table-sm"
-                EmptyDataText="No Vendors Found" >
+                EmptyDataText="No Vendors Found"
+                 OnRowCommand="gvVendors_RowCommand">
 
                 <Columns>
                     <asp:BoundField DataField="VendorId" HeaderText="VendorId" />
@@ -159,7 +162,7 @@
                             <!-- EDIT -->
                             <asp:LinkButton runat="server"
                                 CommandName="EditVendor"
-                                CommandArgument='<%# Eval("VendorId") %>'
+                                CommandArgument='<%# Eval("RowId") %>'
                                 CssClass="btn btn-sm btn-outline-primary me-1"
                                 ToolTip="Edit">
                                 <i class="fa fa-pen"></i>
@@ -168,7 +171,7 @@
                             <!-- DELETE -->
                             <asp:LinkButton runat="server"
                                 CommandName="DeleteVendor"
-                                CommandArgument='<%# Eval("VendorId") %>'
+                                CommandArgument='<%# Eval("RowId") %>'
                                 CssClass="btn btn-sm btn-outline-danger"
                                 ToolTip="Delete"
                                 OnClientClick="return confirm('Are you sure to delete?');">
