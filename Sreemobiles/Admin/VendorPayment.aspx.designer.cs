@@ -42,22 +42,13 @@ namespace Sreemobiles.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddlInvoice;
 
         /// <summary>
-        /// lblMobile control.
+        /// txtMobile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMobile;
-
-        /// <summary>
-        /// lblAddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddress;
+        protected global::System.Web.UI.WebControls.TextBox txtMobile;
 
         /// <summary>
         /// txtPaymentDate control.
@@ -87,13 +78,13 @@ namespace Sreemobiles.Admin
         protected global::System.Web.UI.WebControls.TextBox txtTotalAmount;
 
         /// <summary>
-        /// txtPaidlAmount control.
+        /// txtPaidAmount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPaidlAmount;
+        protected global::System.Web.UI.WebControls.TextBox txtPaidAmount;
 
         /// <summary>
         /// txtBalanceAmount control.

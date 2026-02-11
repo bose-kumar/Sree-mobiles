@@ -1,8 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="VendorPayment.aspx.cs" Inherits="Sreemobiles.Admin.VendorPayment" %>
+﻿<%@ Page Title="Vendor Payment" Language="C#" 
+MasterPageFile="~/Admin/Admin.Master"
+AutoEventWireup="true"
+CodeBehind="VendorPayment.aspx.cs"
+Inherits="Sreemobiles.Admin.VendorPayment" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminContent" runat="server">
-
-
-
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
@@ -13,55 +15,54 @@
 Vendor Payment
 </h4>
 
-<div class="card form-card">
+<div class="card">
 <div class="card-body">
 
 <div class="row g-3">
 
+<!-- Vendor Code -->
 <div class="col-md-4">
 <label class="form-label">Vendor ID</label>
 <asp:DropDownList ID="ddlVendorCode" runat="server"
 CssClass="form-select"
-AutoPostBack="true"
-OnSelectedIndexChanged="ddlVendorCode_SelectedIndexChanged" />
+AutoPostBack="true" />
 </div>
 
+<!-- Vendor Name -->
 <div class="col-md-4">
 <label class="form-label">Vendor Name</label>
 <asp:DropDownList ID="ddlVendorName" runat="server"
 CssClass="form-select"
-AutoPostBack="true"
-OnSelectedIndexChanged="ddlVendorName_SelectedIndexChanged" />
+AutoPostBack="true" />
 </div>
 
+<!-- Invoice -->
 <div class="col-md-4">
 <label class="form-label">Invoice No</label>
 <asp:DropDownList ID="ddlInvoice" runat="server"
 CssClass="form-select"
-AutoPostBack="true"
-OnSelectedIndexChanged="ddlInvoice_SelectedIndexChanged" />
+AutoPostBack="true" />
 </div>
 
+<!-- Mobile -->
 <div class="col-md-4">
-<label class="form-label">Mobile</label><br />
-<asp:Label ID="lblMobile" runat="server" />
+<label class="form-label">Mobile</label>
+<asp:TextBox ID="txtMobile" runat="server"
+CssClass="form-control" ReadOnly="true" />
 </div>
 
-<div class="col-md-8">
-<label class="form-label">Address</label><br />
-<asp:Label ID="lblAddress" runat="server" />
-</div>
-
+<!-- Payment Date -->
 <div class="col-md-4">
 <label class="form-label">Payment Date</label>
 <asp:TextBox ID="txtPaymentDate" runat="server"
 TextMode="Date" CssClass="form-control" />
 </div>
 
+<!-- Payment Mode -->
 <div class="col-md-4">
 <label class="form-label">Payment Mode</label>
 <asp:DropDownList ID="ddlPaymentMode" runat="server" CssClass="form-select">
-<asp:ListItem>SELECT</asp:ListItem>
+<asp:ListItem Value="">SELECT</asp:ListItem>
 <asp:ListItem>Cash</asp:ListItem>
 <asp:ListItem>Bank Transfer</asp:ListItem>
 <asp:ListItem>UPI</asp:ListItem>
@@ -69,24 +70,29 @@ TextMode="Date" CssClass="form-control" />
 </asp:DropDownList>
 </div>
 
+<!-- Total -->
 <div class="col-md-4">
 <label class="form-label">Total Amount</label>
 <asp:TextBox ID="txtTotalAmount" runat="server"
 ReadOnly="true" CssClass="form-control" />
 </div>
 
+<!-- Paid -->
 <div class="col-md-4">
 <label class="form-label">Paid Amount</label>
-<asp:TextBox ID="txtPaidlAmount" runat="server"
-CssClass="form-control" />
+<asp:TextBox ID="txtPaidAmount" runat="server"
+CssClass="form-control"
+AutoPostBack="true"/>
 </div>
 
+<!-- Balance -->
 <div class="col-md-4">
 <label class="form-label">Balance Amount</label>
 <asp:TextBox ID="txtBalanceAmount" runat="server"
 ReadOnly="true" CssClass="form-control" />
 </div>
 
+<!-- Remarks -->
 <div class="col-md-12">
 <label class="form-label">Remarks</label>
 <asp:TextBox ID="txtRemarks" runat="server"
@@ -99,27 +105,27 @@ CssClass="form-control" />
 <div class="text-end mt-3">
 <asp:Button ID="btnSave" runat="server"
 Text="Save Payment"
-CssClass="btn btn-success me-1"
-OnClick="btnSave_Click" />
+CssClass="btn btn-success"
+ />
 
 <asp:Button ID="btnClear" runat="server"
 Text="Clear"
-CssClass="btn btn-secondary"
-OnClick="btnClear_Click" />
+CssClass="btn btn-secondary ms-2"
+ />
 </div>
 
 </div>
 </div>
 
-<div class="card form-card mt-4">
+<!-- Payment List -->
+<div class="card mt-4">
 <div class="card-body">
 
 <h6 class="fw-bold mb-2">Payment List</h6>
 
 <asp:GridView ID="gvPayments" runat="server"
 AutoGenerateColumns="False"
-CssClass="table table-bordered table-hover table-sm"
-OnRowCommand="gvPayments_RowCommand">
+CssClass="table table-bordered table-hover table-sm">
 
 <Columns>
 
@@ -146,7 +152,7 @@ Edit
 <asp:LinkButton runat="server"
 CommandName="DeletePay"
 CommandArgument='<%# Eval("PaymentId") %>'
-OnClientClick="return confirm('Delete?');">
+OnClientClick="return confirm('Delete this payment?');">
 Delete
 </asp:LinkButton>
 </ItemTemplate>
