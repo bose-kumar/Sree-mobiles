@@ -16,8 +16,8 @@ namespace Sri_Mobiles.Admin
             {
                 LoadProducts();
             }
-
         }
+
         private void LoadProducts()
         {
             ProductDAL dal = new ProductDAL();
@@ -29,6 +29,7 @@ namespace Sri_Mobiles.Admin
         {
             Response.Redirect("~/Admin/AddProduct.aspx");
         }
+
         protected void gvProducts_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int pid = Convert.ToInt32(e.CommandArgument);
@@ -46,11 +47,14 @@ namespace Sri_Mobiles.Admin
                     dal.DeleteProduct(pid);
 
                     ScriptManager.RegisterStartupScript(this, GetType(),
-                        "tdel",
-                        "showAdminToast('Product deleted successfully','success');",
+                        "deltoast",
+                        @"
+                        showAdminToast('Product deleted successfully','success');
+                        setTimeout(function(){
+                            window.location.href = 'Product.aspx';
+                        },1500);
+                        ",
                         true);
-
-                    LoadProducts(); // refresh grid
                 }
                 catch (Exception)
                 {
@@ -68,6 +72,5 @@ namespace Sri_Mobiles.Admin
             gvProducts.DataSource = dal.SearchProducts(txtSearch.Text.Trim());
             gvProducts.DataBind();
         }
-
     }
 }

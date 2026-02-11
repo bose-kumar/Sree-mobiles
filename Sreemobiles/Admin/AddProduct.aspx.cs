@@ -22,27 +22,30 @@ namespace Sri_Mobiles.Admin
                     LoadProduct(pid);
                 }
             }
-
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-
-
                 string err;
 
                 if (!ValidateImage(fuImg1, 1024, out err) ||
-                    !ValidateImage(fuImg2, 1024, out err) ||
-                    !ValidateImage(fuImg3, 1024, out err) ||
-                    !ValidateImage(fuImg4, 1024, out err) ||
-                    !ValidateImage(fuImg5, 1024, out err))
+    !ValidateImage(fuImg2, 1024, out err) ||
+    !ValidateImage(fuImg3, 1024, out err) ||
+    !ValidateImage(fuImg4, 1024, out err) ||
+    !ValidateImage(fuImg5, 1024, out err))
                 {
+                    string safeErr = err.Replace("'", "\\'");
+
                     ScriptManager.RegisterStartupScript(this, GetType(),
-                        "imgerr", "alert('" + err + "');", true);
+                        "imgerr",
+                        "showAdminToast('" + safeErr + "','warning');",
+                        true);
+
                     return;
                 }
+
 
                 string img1 = hfImg1.Value;
                 string img2 = hfImg2.Value;
@@ -58,9 +61,9 @@ namespace Sri_Mobiles.Admin
 
                 ProductDAL dal = new ProductDAL();
 
+                // ---------------- INSERT ----------------
                 if (txtProductID.Text == "")
                 {
-                    // INSERT
                     dal.InsertProduct(
                         txtProductName.Text,
                         txtBrand.Text,
@@ -71,15 +74,16 @@ namespace Sri_Mobiles.Admin
                         txtSpec.Text,
                         img1, img2, img3, img4, img5
                     );
-                    // ✅ Save message
-                    ScriptManager.RegisterStartupScript(this, GetType(), "t1",
-        "showAdminToast('Product added successfully','success');" +
-        "setTimeout(function(){ window.location='Product.aspx'; },1500);",
-        true);
+
+                    ShowToastAndRedirect(
+                        "Product added successfully",
+                        "success",
+                        "Product.aspx"      // <-- your product list page
+                    );
                 }
+                // ---------------- UPDATE ----------------
                 else
                 {
-                    // UPDATE
                     dal.UpdateProduct(
                         Convert.ToInt32(txtProductID.Text),
                         txtProductName.Text,
@@ -91,50 +95,22 @@ namespace Sri_Mobiles.Admin
                         txtSpec.Text,
                         img1, img2, img3, img4, img5
                     );
-                    // ✅ Edit message
 
-                    ScriptManager.RegisterStartupScript(this, GetType(), "t2",
-        "showAdminToast('Product updated successfully','success');" +
-        "setTimeout(function(){ window.location='Product.aspx'; },1500);",
-        true);
-
+                    ShowToastAndRedirect(
+                        "Product updated successfully",
+                        "success",
+                        "Product.aspx"      // <-- your product list page
+                    );
                 }
-
             }
-            catch (Exception )
+            catch (Exception)
             {
-                
                 ScriptManager.RegisterStartupScript(this, GetType(), "terr",
                     "showAdminToast('Error while saving product. Please try again.','error');",
                     true);
             }
         }
 
-
-
-        //private void ClearForm()
-        //{
-        //    txtProductID.Text = "";
-        //    txtProductName.Text = "";
-        //    txtBrand.Text = "";
-        //    ddlCategory.SelectedIndex = 0;
-        //    txtPrice.Text = "";
-        //    txtQty.Text = "";
-        //    txtDesc.Text = "";
-        //    txtSpec.Text = "";
-
-        //    hfImg1.Value = "";
-        //    hfImg2.Value = "";
-        //    hfImg3.Value = "";
-        //    hfImg4.Value = "";
-        //    hfImg5.Value = "";
-
-        //    img1.ImageUrl = "";
-        //    img2.ImageUrl = "";
-        //    img3.ImageUrl = "";
-        //    img4.ImageUrl = "";
-        //    img5.ImageUrl = "";
-        //}
         private void SaveImage(FileUpload fu, ref string fileName)
         {
             if (fu.HasFile)
@@ -143,8 +119,6 @@ namespace Sri_Mobiles.Admin
                 fu.SaveAs(Server.MapPath("~/ProductImages/" + fileName));
             }
         }
-
-
 
         private void LoadProduct(int pid)
         {
@@ -162,12 +136,10 @@ namespace Sri_Mobiles.Admin
                 txtDesc.Text = dt.Rows[0]["Description"].ToString();
                 txtSpec.Text = dt.Rows[0]["Specification"].ToString();
 
-
-
                 hfImg1.Value = dt.Rows[0]["Image1"].ToString();
                 hfImg2.Value = dt.Rows[0]["Image2"].ToString();
                 hfImg3.Value = dt.Rows[0]["Image3"].ToString();
-                hfImg4.Value = dt.Rows[0]["Image4"].ToString();   
+                hfImg4.Value = dt.Rows[0]["Image4"].ToString();
                 hfImg5.Value = dt.Rows[0]["Image5"].ToString();
 
                 if (hfImg1.Value != "")
@@ -184,7 +156,6 @@ namespace Sri_Mobiles.Admin
 
                 if (hfImg5.Value != "")
                     img5.ImageUrl = "~/ProductImages/" + hfImg5.Value;
-
             }
         }
 
@@ -193,7 +164,7 @@ namespace Sri_Mobiles.Admin
             errorMsg = "";
 
             if (!fu.HasFile)
-                return true;   // image select pannala na OK (edit time)
+                return true;
 
             string ext = System.IO.Path.GetExtension(fu.FileName).ToLower();
 
@@ -216,7 +187,15 @@ namespace Sri_Mobiles.Admin
             return true;
         }
 
-
-
+        // ---------------- TOAST + REDIRECT HELPER ----------------
+        private void ShowToastAndRedirect(string message, string type, string url)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "admintoast", $@"
+                showAdminToast('{message}','{type}');
+                setTimeout(function(){{
+                    window.location.href = '{url}';
+                }},1500);
+            ", true);
+        }
     }
 }

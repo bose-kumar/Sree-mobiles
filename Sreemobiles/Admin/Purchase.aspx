@@ -18,7 +18,7 @@
         font-size: 24px;
         font-weight: 700;
         color: #2c2c2c;
-/*        border-bottom: 3px solid #ff7043;*/
+/*       border-bottom: 3px solid #ff7043;*/
         padding-bottom: 8px;
         margin-bottom: 18px;
     }

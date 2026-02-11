@@ -62,12 +62,10 @@ namespace Sri_Mobiles.Admin
             }
         }
 
-        // chart demo data
+   
         private void LoadChartData()
         {
-            // ippo demo data
-            MonthLabels = "['Jan','Feb','Mar','Apr','May','Jun']";
-            MonthData = "[3,5,2,6,4,7]";
+            
         }
     }
 }

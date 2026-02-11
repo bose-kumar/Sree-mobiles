@@ -201,11 +201,15 @@ letter-spacing: .5px;*/
 
 <script>
     function checkStock() {
-        let qty = document.getElementById('<%= txtQty.ClientID %>').value || 0;
-        let msg = document.getElementById('stockMsg');
-        qty = parseInt(qty);
 
-        if (qty === 0) {
+    var qtyBox = document.getElementById('<%= txtQty.ClientID %>');
+        var msg = document.getElementById('stockMsg');
+
+        if (!qtyBox || !msg) return;
+
+        var qty = parseInt(qtyBox.value);
+
+        if (isNaN(qty) || qty <= 0) {
             msg.style.display = "block";
             msg.classList.add("stock-danger");
             msg.innerHTML = "Out of Stock";
