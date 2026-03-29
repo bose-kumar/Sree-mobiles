@@ -2,7 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminContent" runat="server">
     
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-
+ <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
     body {
         background: #f4f6fb;
@@ -24,10 +25,14 @@
     }
 
     .dash-title {
-        font-size: 12px;
+/*        font-size: 12px;
         color: #6b7280;
         font-weight: 600;
-        letter-spacing: .5px;
+        letter-spacing: .5px;*/
+ font-size:14px;
+ font-weight:600;
+ color:#374151;
+ margin-bottom:2px
     }
 
     .dash-value {
@@ -209,27 +214,38 @@
     </div>
 
 </div>
+    
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script>
-    window.onload = function () {
-        var ctx = document.getElementById('orderChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: <%= MonthLabels %>,
+ <script type="text/javascript">
+window.onload = function() {
+
+    var canvas = document.getElementById('orderChart');
+
+    if (!canvas) return;
+
+    var ctx = canvas.getContext('2d');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <%= MonthLabels %>,
             datasets: [{
+                label: 'Orders',
                 data: <%= MonthData %>,
                 backgroundColor: '#2563eb'
             }]
         },
         options: {
             responsive: true,
-            plugins: { legend: { display: false } }
+            plugins: {
+                legend: { display: false }
+            }
         }
     });
-    };
-</script>
+};
+ </script>
+
+
 
 </asp:Content>

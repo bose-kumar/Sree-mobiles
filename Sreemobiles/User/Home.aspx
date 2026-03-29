@@ -15,11 +15,11 @@
         object-fit: cover;
     }
 
-    .carousel-caption {
+/*    .carousel-caption {
         background: rgba(0,0,0,0.45);
         padding: 14px 20px;
         border-radius: 10px;
-    }
+    }*/
 
     /* CATEGORY BOX */
     .product-box {
@@ -120,90 +120,111 @@
         <h2 class="text-center mb-4">Our Categories</h2>
 
         <div class="row g-4 text-center">
-
             <div class="col-6 col-md-3">
-                <div class="product-box">
-                    <i class="fa fa-mobile-screen"></i>
-                    <h5>Mobiles</h5>
-                </div>
-            </div>
+    <a href="Product.aspx?cat=mobile" class="text-decoration-none text-dark">
+        <div class="product-box">
+            <i class="fa fa-mobile-screen"></i>
+            <h5>Mobiles</h5>
+        </div>
+    </a>
+</div>
 
-            <div class="col-6 col-md-3">
-                <div class="product-box">
-                    <i class="fa fa-headphones"></i>
-                    <h5>Headphones</h5>
-                </div>
-            </div>
+<div class="col-6 col-md-3">
+    <a href="Product.aspx?cat=accessories" class="text-decoration-none text-dark">
+        <div class="product-box">
+            <i class="fa fa-headphones"></i>
+            <h5>Headphones</h5>
+        </div>
+    </a>
+</div>
 
-            <div class="col-6 col-md-3">
-                <div class="product-box">
-                    <i class="fa fa-tv"></i>
-                    <h5>LED TVs</h5>
-                </div>
-            </div>
+<div class="col-6 col-md-3">
+    <a href="Product.aspx?cat=tv" class="text-decoration-none text-dark">
+        <div class="product-box">
+            <i class="fa fa-tv"></i>
+            <h5>LED TVs</h5>
+        </div>
+    </a>
+</div>
 
-            <div class="col-6 col-md-3">
-                <div class="product-box">
-                    <i class="fa fa-plug"></i>
-                    <h5>Accessories</h5>
-                </div>
-            </div>
+<div class="col-6 col-md-3">
+    <a href="Product.aspx?cat=accessories" class="text-decoration-none text-dark">
+        <div class="product-box">
+            <i class="fa fa-plug"></i>
+            <h5>Accessories</h5>
+        </div>
+    </a>
+</div>
+
 
         </div>
     </section>
 
     <!-- ================= PRODUCTS ================= -->
-    <section class="products-section">
-        <div class="container">
+    <section class="container py-4">
 
-            <h2 class="text-center mb-4">Featured Products</h2>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="fw-bold">Recently Viewed</h4>
 
-            <div class="row g-4">
+        <a href="Product.aspx" class="text-decoration-none fw-semibold">
+            View All →
+        </a>
+    </div>
 
-                <div class="col-6 col-md-3">
-                    <div class="index-product-card">
-                        <img src="../Images/Mobile phones.png" />
-                        <div class="index-product-body">
-                            <h6>Samsung Smartphone</h6>
-                            <p class="index-product-price">₹12,999</p>
-                            <asp:Button ID="btnCart1" runat="server"
-                                CssClass="btn btn-warning btn-sm w-100"
-                                Text="Add to Cart" />
-                        </div>
-                    </div>
-                </div>
+    <div class="row g-3">
+
+    <asp:Repeater ID="rptRecent" runat="server"
+    OnItemCommand="rptRecent_ItemCommand">
+
+
+            <ItemTemplate>
 
                 <div class="col-6 col-md-3">
+
                     <div class="index-product-card">
-                        <img src="../Images/Mobile phones.png" />
+
+                        <img src='<%# "../ProductImages/" + Eval("Image1") %>'
+                             style="height:140px;object-fit:contain;width:100%;" />
+
                         <div class="index-product-body">
-                            <h6>Vivo Smartphone</h6>
-                            <p class="index-product-price">₹10,999</p>
-                            <asp:Button ID="btnCart2" runat="server"
-                                CssClass="btn btn-warning btn-sm w-100"
-                                Text="Add to Cart" />
+
+                            <h6 class="mb-1">
+                                <%# Eval("ProductName") %>
+                            </h6>
+
+                            <div class="index-product-price">
+                                ₹ <%# Eval("Price") %>
+                            </div>
+
+                           
+                                        <asp:Button
+                                            runat="server"
+                                            Text="View Details"
+                                            CssClass="btn btn-outline-dark btn-sm w-100 mt-2"
+                                            CommandName="view"
+                                            CommandArgument='<%# Eval("ProductId") %>' />
+
+                                        <asp:Button
+                                            runat="server"
+                                            Text="Add to Cart"
+                                            CssClass="btn btn-warning btn-sm w-100 mt-2"
+                                            CommandName="addcart"
+                                            CommandArgument='<%# Eval("ProductId") %>' />
+
                         </div>
+
                     </div>
+
                 </div>
 
-                <div class="col-6 col-md-3">
-                    <div class="index-product-card">
-                        <img src="../Images/Mobile phones.png" />
-                        <div class="index-product-body">
-                            <h6>Oppo Smartphone</h6>
-                            <p class="index-product-price">₹9,999</p>
-                            <asp:Button ID="btnCart3" runat="server"
-                                CssClass="btn btn-warning btn-sm w-100"
-                                Text="Add to Cart" />
-                            <br />
-                        </div>
-                    </div>
-                </div>
+            </ItemTemplate>
 
-            </div>
+        </asp:Repeater>
 
-        </div>
-    </section>
+    </div>
+
+</section>
+
 </asp:Content>
 
 

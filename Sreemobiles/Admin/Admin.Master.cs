@@ -19,10 +19,7 @@ namespace Sri_Mobiles.Admin
             Response.Redirect("~/Admin/Dashboard.aspx");
         }
 
-        protected void btnAddProducts_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Admin/AddProduct.aspx");
-        }
+       
 
         protected void btnProducts_Click(object sender, EventArgs e)
         {
@@ -34,9 +31,25 @@ namespace Sri_Mobiles.Admin
             Response.Redirect("~/Admin/Order.aspx");
         }
 
+        protected void btnPurchase_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Admin/Purchase.aspx");
+        }
+
+
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             Response.Redirect("Login.aspx");
+        }
+
+        protected void btnVendor_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Vendor.aspx");
+        }
+
+        protected void btnuserhome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/User/Home.aspx");
         }
     }
 }
